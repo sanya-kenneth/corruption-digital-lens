@@ -1,0 +1,150 @@
+
+html {
+  overflow-x: hidden;
+}
+body {
+  margin: 0;
+  padding: 0;
+    font-family: "Poppins", sans-serif;
+  background: #f6f6f6;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 0 70px;
+  height: 80px;
+  flex-wrap: wrap;
+}
+header nav ul {
+  display: flex;
+  gap: 10px;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+header h1 {
+  white-space: nowrap;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.report-container {
+  background-color: #3a3a86;
+  color: #fff;
+  padding: 16px 70px;
+  width: 100%;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  margin: 20px auto;
+  width: 90%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.image-container {
+  width: 50%;
+  overflow: hidden;
+   height: 680px;
+}
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.form-container form {
+  width: 50%;
+  padding: 30px 20px;
+}
+.form-container form div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.form-container input,
+.form-container select,
+textarea {
+  padding: 12px;
+  border-radius: 8px;
+  background-color: #d9d9d9;
+  border: none;
+  outline: none;
+  margin-top: 8px;
+  font-size: 16px;
+}
+.form-container button {
+  padding: 12px;
+  width: 100%;
+  color: #fff;
+  background-color: #0000ff;
+  border: none;
+  font-weight: 700;
+  border-radius: 8px;
+}
+
+@media (max-width: 1024px) {
+  header {
+    padding: 0 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+  }
+
+  .form-container {
+    flex-direction: column;
+    width: 95%;
+  }
+
+  .image-container,
+  .form-container form {
+    width: 100%;
+  }
+
+  .image-container {
+    height: 250px;
+  }
+
+  .report-container {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 18px;
+  }
+
+  .report-container {
+    padding: 10px 15px;
+  }
+
+  .form-container {
+    width: 100%;
+    margin: 10px auto;
+  }
+
+  .form-container form {
+    padding: 20px 15px;
+  }
+
+  .image-container {
+    height: 200px;
+  }
+
+  textarea {
+    font-size: 14px;
+  }
+
+  .form-container input,
+  .form-container select {
+    font-size: 14px;
+  }
+}
