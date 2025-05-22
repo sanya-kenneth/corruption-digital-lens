@@ -1,0 +1,216 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Lens - {{ c_form.name }}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: rgba(255, 255, 255, 0.98);
+        }
+        .header-section {
+            background: linear-gradient(to bottom, rgba(111, 109, 219, 0.8), rgba(33, 33, 92, 0.9)), url('/api/placeholder/1200/400') center/cover no-repeat;
+            color: white;
+            padding: 2rem 1rem;
+        }
+        .factor-box {
+            padding: 15px;
+            margin-bottom: 10px;
+            text-align: center;
+            font-weight: 500;
+            border: 2px solid rgba(107, 99, 255, 0.13);
+            border-radius: .2em;
+        }
+        .act-item {
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+        }
+        .act-item:last-child {
+            border-bottom: none;
+        }
+        .act-bar {
+            width: 4px;
+            height: 40px;
+            background-color: #6c63ff;
+            margin-right: 15px;
+        }
+        .act-title {
+            font-weight: 500;
+            flex-grow: 1;
+        }
+        .back-button {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .back-button:hover {
+            color: #e0e0e0;
+        }
+        .lead {
+            color:rgba(220, 217, 217, 0.95);
+            font-size: 16px;
+            font-style: Poppins;
+        }
+        footer {
+            font-size: 0.9rem;
+            color: #555;
+            background-color:rgba(248, 249, 250, 0.89);
+            padding: 8px 0;
+            text-align: center;
+            margin-top: 30px; !important
+        }
+        form {
+            text-align: center;
+        }
+        .the-icon {
+            color: #6c63ff;
+            font-color: #6c63ff;
+            font-size: 20px;
+        }
+        .interplay {
+            border-left: 4px solid #6c63ff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Corruption Digital Lens</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="/incident/report">Report Corruption Incidence</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="header-section">
+        <div class="container">
+            <a href="/" class="back-button">
+                <i class="fas fa-arrow-left me-2"></i> Back to home
+            </a>
+            <h1 class="display-4 mt-3">{{ c_form.name }}</h1>
+            <p class="lead">{{ c_form.description }}</p>
+        </div>
+    </div>
+
+    <!-- Contributing Factors Section -->
+    <div class="container my-5">
+        {% if factors %}
+        <h2 class="text-center mb-4">Contributing Factors</h2>
+        <p class="text-center mb-4">The following factors have been identified as contributing to {{ c_form.name }} in Uganda:</p>
+        
+  
+        {% with total=factors|length %}
+        {% with cols=4 %}
+        
+        <div class="row mt-2">
+        {% for factor in factors %}
+            <div class="col-md-3 mb-2">
+                <div class="factor-box">{{ factor.name }}</div>
+            </div>
+            
+            {% if forloop.counter|divisibleby:cols and not forloop.last %}
+                </div><div class="row mt-2">
+            {% endif %}
+        {% endfor %}
+        </div>
+        {% endwith %}
+        {% endwith %}
+        {% endif %}
+    </div>
+
+    <!-- Uganda Constitution Acts Section -->
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Uganda Constitution Acts</h2>
+        
+        <div class="acts-container">
+            <!-- Acts -->
+            {% for act in acts %}
+            <div class="act-item">
+                <div class="d-flex align-items-center">
+                    <div class="act-bar"></div>
+                    <div class="act-title">{{ act.name }}</div>
+                    <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#{{ act.id }}" aria-expanded="false">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <div class="collapse" id="{{ act.id }}">
+                    <div class="card card-body mt-2">
+                        {{ act.description }}
+                    </div>
+                    <div class="card card-body mt-2">
+                        {{ act.notes }}
+                    </div>
+                    
+                    {% if act.interplay %}
+                        <div class="card card-body mt-2 interplay">
+                            <p style="font-weight: bold">Interplay of factors</p>
+                            {{ act.interplay }}
+                        </div>
+                    {% endif %}
+                    <div style="margin-top: 5px;">
+                        <div class="d-flex flex-row-reverse">
+                            <div data-bs-toggle="modal" data-bs-target="#myModal">
+                                <i class="fa-regular fa-comment the-icon"></i></div>
+                            <div><i class="fa fa-regular fa-thumbs-up the-icon" style="margin-right: 8px;"
+                                onclick="window.location.href='{% url 'register-like' act.id c_form.id %}'; ">
+                                <span class="the-icon" style="font-size: 16px;">{{ act.likes }}</span></i></div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- The Modal -->
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+            <div class="modal-content">
+        
+                <!-- Modal Header -->
+                <div class="modal-header">
+                {% comment %} <h4 class="modal-title" style="text-align: center;">Leave a comment</h4> {% endcomment %}
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+                      <form method="post">
+                        <div class="mb-3 mt-3">
+                          {% csrf_token %}
+                          {{ form }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                {% comment %} <button type="button" class="btn btn-primary">Send</button> {% endcomment %}
+                </div>
+        
+            </div>
+            </div>
+        </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer fixed-bottom">
+        <div class="container">
+            <p class="mb-0">© 2025 Anti-Corruption Resource Portal. All rights reserved.</p>
+            <p class="mb-0">This platform aims to educate the public about corruption laws in Uganda.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
