@@ -53,9 +53,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'corruption_lens.urls'
 
-
-print(os.listdir(os.path.join(BASE_DIR, 'templates/')), "**********************")
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

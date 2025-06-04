@@ -23,6 +23,7 @@
             padding: 0;
               font-family: "Poppins", sans-serif;
             background: #f6f6f6;
+            overflow: scroll;
           }
           
           header {
@@ -57,21 +58,23 @@
             display: flex;
             flex-direction: row;
             background-color: #fff;
-            margin: 20px auto;
-            width: 90%;
+            margin: 50px auto;
+            margin-bottom: 300px;
+            width: 70%;
             border-radius: 12px;
-            overflow: hidden;
+            overflow: scroll;
+            {% comment %} border: 1px solid red; {% endcomment %}
           }
           
           .image-container {
             width: 50%;
             overflow: hidden;
-             height: 680px;
+            height: 680px;
           }
           .image-container img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            {% comment %} object-fit: cover; {% endcomment %}
             display: block;
           }
           
@@ -165,6 +168,12 @@
               font-size: 14px;
             }
           }
+          footer {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            color: #555;
+        }
     </style>
   </head>
   <body>
@@ -173,6 +182,7 @@
       <nav>
         <ul>
           <li><a class="nav-link" href="/">Home</a></li>
+          <li><a class="nav-link" href="/feedback">Feedback</a></li>
         </ul>
       </nav>
     </header>
@@ -251,7 +261,13 @@
           </div>
 
         </form>
+
       </div>
+      <footer class="footer fixed-bottom">
+        <p>© 2025 Ayebare Joanina. All rights reserved.</p>
+        <p>This platform aims to educate the public about corruption laws in Uganda.</p>
+    </footer>
     </main>
+
   </body>
 </html>

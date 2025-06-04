@@ -23,8 +23,8 @@
             margin-bottom: 10px;
             text-align: center;
             font-weight: 500;
-            border: 2px solid rgba(107, 99, 255, 0.13);
-            border-radius: .2em;
+            border: 2px solid rgba(107, 99, 255, 0.29);
+            border-radius: .4em;
         }
         .act-item {
             border-bottom: 1px solid #eee;
@@ -77,7 +77,37 @@
         .interplay {
             border-left: 4px solid #6c63ff;
         }
+        .comment-trigger {
+            border: 0;
+            background-color: white;
+        }
     </style>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle comment button clicks
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.comment-trigger')) {
+                    e.preventDefault();
+                    
+                    const button = e.target.closest('.comment-trigger');
+                    const actId = button.dataset.actId;
+                    const actName = button.dataset.actName;
+                    
+                    // Update modal with act data
+                    const modalInput = document.getElementById('modal-input');
+                    const modalTitle = document.querySelector('.modal-body h5');
+                    
+                    if (modalInput) modalInput.value = actId;
+                    if (modalTitle) modalTitle.textContent = actName;
+                    
+                    // Show modal
+                    const modal = new bootstrap.Modal(document.getElementById('myModal'));
+                    modal.show();
+                }
+            });
+        });
+        
+    </script>   
 </head>
 <body>
     <!-- Navigation -->
@@ -87,6 +117,7 @@
             <div class="navbar-nav ms-auto">
                 <a class="nav-link" href="/">Home</a>
                 <a class="nav-link" href="/incident/report">Report Corruption Incidence</a>
+                <a class="nav-link" href="feedback">Feedback</a>
             </div>
         </div>
     </nav>
@@ -103,18 +134,18 @@
     </div>
 
     <!-- Contributing Factors Section -->
-    <div class="container my-5">
+    <div class="" style="margin-top: 50px;">
         {% if factors %}
         <h2 class="text-center mb-4">Contributing Factors</h2>
         <p class="text-center mb-4">The following factors have been identified as contributing to {{ c_form.name }} in Uganda:</p>
         
   
         {% with total=factors|length %}
-        {% with cols=4 %}
+        {% with cols=5 %}
         
-        <div class="row mt-2">
+        <div class="row mt-2" style="display: flex; justify-content: center;">
         {% for factor in factors %}
-            <div class="col-md-3 mb-2">
+            <div class="col-md-2 mb-2" >
                 <div class="factor-box">{{ factor.name }}</div>
             </div>
             
@@ -124,8 +155,29 @@
         {% endfor %}
         </div>
         {% endwith %}
-        {% endwith %}
+        {% endwith %} 
+
+
+        {% comment %} <div class="row mt-2">
+        {% for factor in factors %}
+            <div class="col-md-2">
+                <div class="factor-box">{{ factor.name }}</div>
+            </div>
+        {% endfor %} {% endcomment %}
+
+
+        {% comment %} <div class="row mt-2">
+            {% for factor in factors %}
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-2">
+                    <div class="factor-box border rounded">{{ factor.name }}</div>
+                </div>
+            {% endfor %}
+            </div> {% endcomment %}
+
+
+
         {% endif %}
+        </div>
     </div>
 
     <!-- Uganda Constitution Acts Section -->
@@ -135,6 +187,7 @@
         <div class="acts-container">
             <!-- Acts -->
             {% for act in acts %}
+            <input type="hidden" class="act-data" data-act-id="{{ act.id }}" value="{{ act.id }}">
             <div class="act-item">
                 <div class="d-flex align-items-center">
                     <div class="act-bar"></div>
@@ -144,12 +197,15 @@
                     </button>
                 </div>
                 <div class="collapse" id="{{ act.id }}">
+                    <input type="hidden" id="act-data" value="{{act}}">
                     <div class="card card-body mt-2">
                         {{ act.description }}
                     </div>
+                    {% if act.notes %}
                     <div class="card card-body mt-2">
                         {{ act.notes }}
                     </div>
+                    {% endif%}
                     
                     {% if act.interplay %}
                         <div class="card card-body mt-2 interplay">
@@ -159,53 +215,54 @@
                     {% endif %}
                     <div style="margin-top: 5px;">
                         <div class="d-flex flex-row-reverse">
-                            <div data-bs-toggle="modal" data-bs-target="#myModal">
-                                <i class="fa-regular fa-comment the-icon"></i></div>
-                            <div><i class="fa fa-regular fa-thumbs-up the-icon" style="margin-right: 8px;"
-                                onclick="window.location.href='{% url 'register-like' act.id c_form.id %}'; ">
-                                <span class="the-icon" style="font-size: 16px;">{{ act.likes }}</span></i></div>
-                          </div>
+                            <button class="comment-trigger" data-act-id="{{ act.id }}" data-act-name="{{ act.name }}">
+                                <i class="fa-regular fa-comment the-icon"></i>
+                            </button>
+                            <div>
+                                <i class="fa fa-regular fa-thumbs-up the-icon" style="margin-right: 8px;"
+                                    onclick="window.location.href='{% url 'register-like' act.id c_form.id %}';">
+                                    <span class="the-icon" style="font-size: 16px;">{{ act.likes }}</span>
+                                </i>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-        <!-- The Modal -->
-        <div class="modal" id="myModal">
-            <div class="modal-dialog">
-            <div class="modal-content">
-        
-                <!-- Modal Header -->
-                <div class="modal-header">
-                {% comment %} <h4 class="modal-title" style="text-align: center;">Leave a comment</h4> {% endcomment %}
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-        
-                <!-- Modal body -->
-                <div class="modal-body">
-                      <form method="post">
-                        <div class="mb-3 mt-3">
-                          {% csrf_token %}
-                          {{ form }}
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                      </form>
-                </div>
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                {% comment %} <button type="button" class="btn btn-primary">Send</button> {% endcomment %}
-                </div>
-        
+            {% endfor %}
+        </div>
+    </div>
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+            {% comment %} <h4 class="modal-title" style="text-align: center;">Leave a comment</h4> {% endcomment %}
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                    <form method="post">
+                    <div class="mb-3 mt-3">
+                        {% csrf_token %}
+                        <h5>{{ act.name }}</h5>
+                        <br>
+                        {{ form }}
+                    </div>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
             </div>
         </div>
-            {% endfor %}
         </div>
     </div>
 
     <!-- Footer -->
     <footer class="footer fixed-bottom">
         <div class="container">
-            <p class="mb-0">© 2025 Anti-Corruption Resource Portal. All rights reserved.</p>
+            <p class="mb-0">© 2025 Ayebare Joanina. All rights reserved.</p>
             <p class="mb-0">This platform aims to educate the public about corruption laws in Uganda.</p>
         </div>
     </footer>

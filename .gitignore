@@ -2,3 +2,4 @@ venv/
 corruption_lens/__pycache__
 app/__pycache__
 app/migrations/__pycache__
+db.sqlite3

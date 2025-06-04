@@ -34,7 +34,7 @@
 
         .header-hero {
 
-            height: calc(84vh - 0px);
+            height: calc(75vh - 0px);
             display: flex;
             flex-direction: column;
 
@@ -127,6 +127,7 @@
             border-radius: .7em;
             border: none;
             font-size: 16px;
+            color: black;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
@@ -303,6 +304,11 @@
             
         }
 
+        .search_btn {
+            background-color: white;
+            border: 0;
+        }
+
 
 
     </style>
@@ -314,27 +320,34 @@
             <nav>
                 <a href="#">Home</a>
                 <a href="incident/report">Report Corruption Incidence</a>
+                <a href="feedback">Feedback</a>
             </nav>
         </header>
         
         <div class="hero">
             <h1>Fighting Corruption in Uganda</h1>
             <p>Explore the laws, understand the factors, and help combat corruption by increasing awareness and accountability.</p>
+            <form id="form1" method="get">
             <div class="search-container">
-                <input type="text" class="search-input" placeholder="Search by forms or factors">
+                <input type="text" name="searchq" id="searchq" class="search-input" placeholder="Search by forms or factors">
                 <div class="search-icon">
+                    <button class="search_btn">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
+                </button>
                 </div>
             </div>
+        </form>
         </div>
     </div>
 
     
     <div class="content">
+        {% if not search %}
         <h2 class="section-title">Forms of Corruption</h2>
+        {% endif %}
         {% for fc in formsc %}
         <div class="container-fluid">
             <div class="row">
@@ -351,7 +364,7 @@
         {% endfor %}
 
     <footer class="footer fixed-bottom">
-        <p>© 2025 Anti-Corruption Resource Portal. All rights reserved.</p>
+        <p>© 2025 Ayebare Joanina. All rights reserved.</p>
         <p>This platform aims to educate the public about corruption laws in Uganda.</p>
     </footer>
 </body>

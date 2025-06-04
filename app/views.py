@@ -1,11 +1,18 @@
 from django.shortcuts import render, redirect
+from django.db.models import Q
+from django.contrib import messages
 
-from .models import CorruptionForm, Act
-from .forms import CommentForm, IncidentForm
+from .models import CorruptionForm, Act, Comment
+from .forms import CommentForm, IncidentForm, FeedbackForm
 
 def home(request):
     objs = CorruptionForm.objects.all()
-    return render(request, "home.html",  {"formsc": objs})
+    if 'searchq' in request.GET:
+        search = request.GET['searchq']
+        if search:
+            objs = objs.filter(Q(name__icontains=search))
+            return render(request, "home.html",  {"formsc": objs, "search": 1})
+    return render(request, "home.html",  {"formsc": objs, "search": 0})
 
 # def act_detail(request, corruption_id):
 #     # Fetch item data based on item_id
@@ -29,7 +36,11 @@ def act_detail(request, corruption_id, *args, **kwargs):
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
-            form.save()
+            comment = form.cleaned_data.get('comment')
+            act = form.cleaned_data.get('act')
+            act = Act.objects.filter(id=int(act[0])).first()
+            _ = Comment.objects.create(comment=comment, act=act)
+            # form.save()
             return redirect('act_detail', corruption_id=corruption_id)
     return render(request, 'corruption_detail.html', context)
 
@@ -41,3 +52,16 @@ def report_incident(request):
             form.save()
             return redirect('report-incident')
     return render(request, 'report.html', context)
+
+def feedback(request):
+    form = FeedbackForm()
+    form.fields.get('name').required = False
+    form.fields.get('email').required = False
+    context = {"form": form}
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.info(request, "Feedback submitted successfuly. Thank you")
+            return redirect('feedback')
+    return render(request, 'feedback.html', context)
