@@ -25,6 +25,7 @@
             font-weight: 500;
             border: 2px solid rgba(107, 99, 255, 0.29);
             border-radius: .4em;
+            cursor: pointer;
         }
         .act-item {
             border-bottom: 1px solid #eee;
@@ -77,7 +78,7 @@
         .interplay {
             border-left: 4px solid #6c63ff;
         }
-        .comment-trigger {
+        .comment-trigger, .interplay-comment-trigger {
             border: 0;
             background-color: white;
         }
@@ -107,7 +108,92 @@
             });
         });
         
-    </script>   
+    </script>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle comment button clicks
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.factor-trigger')) {
+                    e.preventDefault();
+
+                    const button = e.target.closest('.factor-trigger');
+                    const factorId = button.dataset.factorId;
+                    const factorName = button.dataset.factorName;
+                    const factorDescription = button.dataset.factorDescription;
+                    const factorIndicators = button.dataset.factorIndicators;
+                    
+                    // Update modal with factor data
+                    const modalInput = document.getElementById('factor-modal-input');
+                    const modalTitle = document.getElementById('factor-title');
+                    const modalDescription = document.getElementById('factor-description');
+                    const modalIndicators = document.getElementById('factor-indicators');
+                    // const modalTitle = document.querySelector('.factor-modal-body h5');
+
+                    const indicatorsTitlle = document.getElementById('indicators-title');
+                    
+                    if (modalInput) modalInput.value = factorId;
+                    if (modalTitle) modalTitle.textContent = factorName;
+                    if (modalDescription) modalDescription.textContent = factorDescription;
+                    if (factorIndicators !== "None" && modalTitle.textContent == factorName) {
+                        indicatorsTitlle.style.display = 'block';
+                        modalIndicators.textContent = factorIndicators;
+                        modalIndicators.style.display = 'block'
+                    } else {
+                        indicatorsTitlle.style.display = 'none';
+                        modalIndicators.style.display = 'none'
+                    }
+                    
+                    // Show modal
+                    const modal = new bootstrap.Modal(document.getElementById('factorModal'));
+                    modal.show();
+                }
+            });
+        });
+        
+    </script>
+        <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle comment button clicks
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.interplay-trigger')) {
+                    e.preventDefault();
+
+                    const button = e.target.closest('.interplay-trigger');
+                    // const factorId = button.dataset.factorId;
+                    // const factorName = button.dataset.factorName;
+                    // const factorDescription = button.dataset.factorDescription;
+                    // const factorIndicators = button.dataset.factorIndicators;
+                    
+                    // Update modal with factor data
+                    // const modalInput = document.getElementById('factor-modal-input');
+                    // const modalTitle = document.getElementById('factor-title');
+                    // const modalDescription = document.getElementById('factor-description');
+                    // const modalIndicators = document.getElementById('factor-indicators');
+                    // const modalTitle = document.querySelector('.factor-modal-body h5');
+
+                    // const indicatorsTitlle = document.getElementById('indicators-title');
+                    
+                    // if (modalInput) modalInput.value = factorId;
+                    // if (modalTitle) modalTitle.textContent = factorName;
+                    // if (modalDescription) modalDescription.textContent = factorDescription;
+                    /*if (factorIndicators !== "None" && modalTitle.textContent == factorName) {
+                        indicatorsTitlle.style.display = 'block';
+                        modalIndicators.textContent = factorIndicators;
+                        modalIndicators.style.display = 'block'
+                    } else {
+                        indicatorsTitlle.style.display = 'none';
+                        modalIndicators.style.display = 'none'
+                    }
+                    */
+                    
+                    // Show modal
+                    const modal = new bootstrap.Modal(document.getElementById('interplayModal'));
+                    modal.show();
+                }
+            });
+        });
+        
+    </script> 
 </head>
 <body>
     <!-- Navigation -->
@@ -146,7 +232,9 @@
         <div class="row mt-2" style="display: flex; justify-content: center;">
         {% for factor in factors %}
             <div class="col-md-2 mb-2" >
-                <div class="factor-box">{{ factor.name }}</div>
+                    <div data-factor-id="{{ factor.id }}" data-factor-description="{{ factor.description }}" 
+                    data-factor-name="{{ factor.name }}" data-factor-indicators="{{ factor.indicators }}" 
+                    class="factor-box factor-trigger">{{ factor.name }}</div>
             </div>
             
             {% if forloop.counter|divisibleby:cols and not forloop.last %}
@@ -180,6 +268,12 @@
         </div>
     </div>
 
+    <div class="corruption-button" style="text-align: center; margin-bottom: 2.5%; margin-top: 2.5%;">
+        <button class="btn interplay-trigger" style="width: 20%; background-color:rgba(92, 25, 216, 0.68); color: white;">
+            Interplay of factors
+        </button>
+    </div>
+
     <!-- Uganda Constitution Acts Section -->
     <div class="container my-5">
         <h2 class="text-center mb-4">Uganda Constitution Acts</h2>
@@ -206,13 +300,8 @@
                         {{ act.notes }}
                     </div>
                     {% endif%}
-                    
-                    {% if act.interplay %}
-                        <div class="card card-body mt-2 interplay">
-                            <p style="font-weight: bold">Interplay of factors</p>
-                            {{ act.interplay }}
-                        </div>
-                    {% endif %}
+
+
                     <div style="margin-top: 5px;">
                         <div class="d-flex flex-row-reverse">
                             <button class="comment-trigger" data-act-id="{{ act.id }}" data-act-name="{{ act.name }}">
@@ -226,6 +315,20 @@
                             </div>
                         </div>
                     </div>
+
+                    
+                    {% if act.interplay %}
+                        <div class="card card-body mt-2 interplay">
+                            <p style="font-weight: bold">Interplay of factors</p>
+                            {{ act.interplay }}
+                        </div>
+                    {% endif %}
+                    {% if act.references %}
+                    <div class="card card-body mt-2 interplay">
+                        <p style="font-weight: bold">References</p>
+                        {{ act.references }}
+                    </div>
+                    {% endif %}
                 </div>
             </div>
             {% endfor %}
@@ -233,7 +336,7 @@
     </div>
     <!-- The Modal -->
     <div class="modal" id="myModal">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
@@ -251,6 +354,131 @@
                     </div>
                     <button type="submit" class="btn btn-success">Submit</button>
                     </form>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+    <!-- Interplay Modal -->
+    <div class="modal" tabindex="-1" role="dialog" id="interplayModal">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+            {% comment %} <h4 class="modal-title" style="text-align: center;">Leave a comment</h4> {% endcomment %}
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button> 
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                    <div class="mb-3 mt-3" style="padding: 10px;">
+                        <h5 style="text-align: center;" id="interplay-title">Interplay of Factors</h5>
+                        <br>
+                        <hr>
+                                <div class="acts-container">
+            <!-- Acts -->
+            {% for inter in interplay %}
+            <input type="hidden" class="act-data" data-interplay-id="{{ inter.id }}" value="{{ inter.id }}">
+            <div class="act-item">
+                <div class="d-flex align-items-center">
+                    <div class="act-bar"></div>
+                    <div class="interplay-title">{{ inter.name }}</div>
+                    <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#{{ inter.id }}interplay" aria-expanded="false">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <div class="collapse" id="{{ inter.id }}interplay">
+                    <input type="hidden" id="inter-data" value="{{inter}}">
+                    <div class="card card-body mt-2">
+                        <h6>Factors:</h6>
+                        <p>{{ inter.factors }}</p>
+                    </div>
+                    <div class="card card-body mt-2">
+                        <h6>Act:</h6>
+                        <p>{{ inter.act }}</p>
+                    </div>
+                    
+                    {% if inter.notes %}
+                    
+                    <div class="card card-body mt-2">
+                        <h6>Notes:</h6>
+                        <p>{{ inter.notes }}</p>
+                    </div>
+                    {% endif%}
+
+                    {% if inter.references %}
+                    
+                    <div class="card card-body mt-2">
+                        <h6>References:</h6>
+                        <p>{{ inter.references }}</p>
+                    </div>
+                    {% endif%}
+
+
+                    <div style="margin-top: 5px;">
+                        <div class="d-flex flex-row-reverse">
+                            {% comment %} <button class="interplay-comment-trigger" data-interplay-id="{{ inter.id }}" data-interplay-name="{{ inter.name }}">
+                                <i class="fa-regular fa-comment the-icon"></i>
+                            </button> {% endcomment %}
+                            <div>
+                                <i class="fa fa-regular fa-thumbs-up the-icon" style="margin-right: 8px;"
+                                    onclick="window.location.href='{% url 'interplay-like' inter.id c_form.id %}';">
+                                    <span class="the-icon" style="font-size: 16px;">{{ inter.likes }}</span>
+                                </i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form id="interplay-comment-form">
+                        <div class="form-group">
+                        <label for="message">Add comment</label><br><br>
+                    <textarea class="form-control" id="message" name="message" placeholder="Share your thoughts on this interplay of factors"></textarea>
+                    <br>
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                    </div>
+                    </form>
+
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+                        
+                    </div>
+                    {% comment %} <button type="submit" class="btn btn-success">Submit</button> {% endcomment %}
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+    <!-- Factor Modal -->
+    <div class="modal" tabindex="-1" role="dialog" id="factorModal">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+            {% comment %} <h4 class="modal-title" style="text-align: center;">Leave a comment</h4> {% endcomment %}
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button> 
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                    <div class="mb-3 mt-3" style="padding: 10px;">
+                        <h5 style="text-align: center;" id="factor-title">{{ factor.name }}</h5>
+                        <br>
+                        <hr>
+                        <h6>Description: </h6>
+                        <p id="factor-description"></p>
+                        <h6 style="display: none;" id="indicators-title">Indicators:</h6>
+                        <p id="factor-indicators"></p>
+                        
+                    </div>
+                    {% comment %} <button type="submit" class="btn btn-success">Submit</button> {% endcomment %}
             </div>
             <!-- Modal footer -->
             <div class="modal-footer">

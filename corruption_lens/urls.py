@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 
-from app.views import home, act_detail, register_like, report_incident, feedback
+from app.views import home, act_detail, register_like, report_incident, feedback, interplay_like
 from corruption_lens import settings
 
 urlpatterns = [
@@ -28,6 +28,7 @@ urlpatterns += [
     path('', home, name='home'),
     path('corruption-form/acts/<int:corruption_id>', act_detail, name='act_detail'),
     path('act/like/<int:act_id>/<int:corruption_id>', register_like, name='register-like'),
+    path('interplay/like/<int:interplay_id>/<int:corruption_id>', interplay_like, name='interplay-like'),
     path('incident/report', report_incident, name='report-incident'),
     path('feedback', feedback, name='feedback')
 ]

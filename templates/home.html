@@ -110,9 +110,16 @@
         }
 
         .hero p {
-            font-size: 24px;
+            {% comment %} font-size: 24px; {% endcomment %}
             max-width: 800px;
             margin: 0 auto 30px;
+        }
+
+        .dfn {
+            font-size: 22px;
+        }
+        .tagline {
+            font-size: 24px;
         }
 
         .search-container {
@@ -305,7 +312,7 @@
         }
 
         .search_btn {
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.04);
             border: 0;
         }
 
@@ -314,6 +321,41 @@
     </style>
 </head>
 <body>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLongTitle">What is Corruption?</h4>
+          <br>
+          <p style="font-size: 16px;">{{ corruption.definition }}</p>
+          {% comment %} <button type="button" class="close" data-dismiss="modal" aria-label="Close"> {% endcomment %}
+            {% comment %} <span aria-hidden="true">&times;</span>
+          </button> {% endcomment %}
+        </div>
+        <div class="modal-body">
+          <h5>Forms of corruption:</h5>
+          {% for f in  formsc%}
+          <ul>
+            <li>{{ f.name }}</li>
+          </ul>
+          {% endfor %}
+          {% if corruption.notes %}
+          <hr>
+          <h5>Notes: </h5>
+          <p>{{ corruption.notes }}</p>
+          {% endif %}
+        </div>
+        <div class="modal-footer" style="text-align: center;">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
     <div class="header-hero">
         <header>
             <div class="logo">Corruption Digital Lens</div>
@@ -326,10 +368,10 @@
         
         <div class="hero">
             <h1>Fighting Corruption in Uganda</h1>
-            <p>Explore the laws, understand the factors, and help combat corruption by increasing awareness and accountability.</p>
+            <p class="tagline">Explore the laws, understand the factors, and help combat corruption by increasing awareness and accountability.</p>
             <form id="form1" method="get">
             <div class="search-container">
-                <input type="text" name="searchq" id="searchq" class="search-input" placeholder="Search by forms or factors">
+                <input type="text" name="searchq" id="searchq" class="search-input" placeholder="Search by form of corruption">
                 <div class="search-icon">
                     <button class="search_btn">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -343,8 +385,14 @@
         </div>
     </div>
 
+
     
     <div class="content">
+    <div class="corruption-button" style="text-align: center; margin-bottom: 2.5%;">
+        <button class="btn btn-primary" style="width: 20%;" data-toggle="modal" data-target="#exampleModalCenter">
+            View more about corruption
+        </button>
+    </div>
         {% if not search %}
         <h2 class="section-title">Forms of Corruption</h2>
         {% endif %}

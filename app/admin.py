@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CorruptionForm, Factor, Act, Comment, Incident, Feedback
+from .models import CorruptionForm, CorruptionPage, Factor, Act, Comment, Incident, Feedback, Interplay
 from django.db import models
 
 
@@ -25,7 +25,7 @@ class FactorAdmin(admin.ModelAdmin):
 
 
 class ActAdmin(admin.ModelAdmin):
-    list_display = ("name", "description", "notes","interplay", "likes")
+    list_display = ("name", "description", "notes","interplay", "references", "likes")
     search_fields = ("name",)
     readonly_fields = ("likes",)
     formfield_overrides = {
@@ -41,10 +41,17 @@ class IncidentAdmin(admin.ModelAdmin):
     readonly_fields = ("form_of_corruption", "location", "description", "email")
     
 
+class InterplayAdmin(admin.ModelAdmin):
+    # list_display = '__all__'
+    readonly_fields = ('likes',)
+    
+
 admin.site.register(CorruptionForm, CorruptionFormAdmin)
 admin.site.register(Factor, FactorAdmin)
 admin.site.register(Act, ActAdmin)
 admin.site.register(Comment, CommentAdmin)
 admin.site.register(Incident, IncidentAdmin)
+admin.site.register(Interplay, InterplayAdmin)
 admin.site.register(Feedback)
+admin.site.register(CorruptionPage)
     

@@ -2,17 +2,23 @@ from django.shortcuts import render, redirect
 from django.db.models import Q
 from django.contrib import messages
 
-from .models import CorruptionForm, Act, Comment
+from .models import CorruptionForm, Act, Comment, CorruptionPage, Interplay
 from .forms import CommentForm, IncidentForm, FeedbackForm
 
 def home(request):
     objs = CorruptionForm.objects.all()
+    corruption = CorruptionPage.objects.first()
     if 'searchq' in request.GET:
         search = request.GET['searchq']
         if search:
-            objs = objs.filter(Q(name__icontains=search))
-            return render(request, "home.html",  {"formsc": objs, "search": 1})
-    return render(request, "home.html",  {"formsc": objs, "search": 0})
+            if search == 'corruption':
+                objs = objs
+            else:
+                objs = objs.filter(Q(name__icontains=search))
+            return render(request, "home.html",  {"formsc": objs, "search": 1,
+                                                  "corruption": corruption})
+    return render(request, "home.html",  {"formsc": objs, "search": 0,
+                                          "corruption": corruption})
 
 # def act_detail(request, corruption_id):
 #     # Fetch item data based on item_id
@@ -20,11 +26,17 @@ def home(request):
 #     return render(request, 'corruption_detail.html', {'item': item})
 
 def register_like(request, act_id, corruption_id):
-    print(act_id, corruption_id)
     if act_id and corruption_id:
         act = Act.objects.get(id=act_id)
         act.likes += 1
         act.save()
+        return redirect('act_detail', corruption_id=corruption_id)
+    
+def interplay_like(request, interplay_id, corruption_id):
+    if interplay_id and corruption_id:
+        inter = Interplay.objects.get(id=interplay_id)
+        inter.likes += 1
+        inter.save()
         return redirect('act_detail', corruption_id=corruption_id)
 
 
@@ -32,7 +44,8 @@ def act_detail(request, corruption_id, *args, **kwargs):
     c_form = CorruptionForm.objects.get(id=corruption_id)
     factors = c_form.factors.all()
     acts = c_form.acts.all()
-    context = {'c_form': c_form, "factors": factors, "acts": acts, "form": CommentForm()}
+    interplay = c_form.interplay.all()
+    context = {'c_form': c_form, "factors": factors, "acts": acts, "form": CommentForm(), 'interplay': interplay}
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
