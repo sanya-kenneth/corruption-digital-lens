@@ -12,6 +12,7 @@
     <style>
         body {
             background: rgba(255, 255, 255, 0.98);
+            font-family: "Poppins", sans-serif;
         }
         .header-section {
             background: linear-gradient(to bottom, rgba(111, 109, 219, 0.8), rgba(33, 33, 92, 0.9)), url('/api/placeholder/1200/400') center/cover no-repeat;
@@ -293,11 +294,11 @@
                 <div class="collapse" id="{{ act.id }}">
                     <input type="hidden" id="act-data" value="{{act}}">
                     <div class="card card-body mt-2">
-                        {{ act.description }}
+                        <pre style="word-wrap: break-word; text-wrap: pretty; font-family: 'Poppins', sans-serif; padding: 5px;">{{ act.description }}</pre>
                     </div>
                     {% if act.notes %}
                     <div class="card card-body mt-2">
-                        {{ act.notes }}
+                        <pre style="word-wrap: break-word; text-wrap: pretty; font-family: 'Poppins', sans-serif; padding: 5px;">{{ act.notes }}</pre>
                     </div>
                     {% endif%}
 
@@ -320,13 +321,13 @@
                     {% if act.interplay %}
                         <div class="card card-body mt-2 interplay">
                             <p style="font-weight: bold">Interplay of factors</p>
-                            {{ act.interplay }}
+                            <pre style="word-wrap: break-word; text-wrap: pretty; font-family: 'Poppins', sans-serif; padding: 5px;">{{ act.interplay }}</pre>
                         </div>
                     {% endif %}
                     {% if act.references %}
                     <div class="card card-body mt-2 interplay">
                         <p style="font-weight: bold">References</p>
-                        {{ act.references }}
+                        <pre style="word-wrap: break-word; text-wrap: pretty; font-family: 'Poppins', sans-serif; padding: 5px;">{{ act.references }}</pre>
                     </div>
                     {% endif %}
                 </div>
@@ -336,7 +337,7 @@
     </div>
     <!-- The Modal -->
     <div class="modal" id="myModal">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
@@ -378,7 +379,7 @@
                         <h5 style="text-align: center;" id="interplay-title">Interplay of Factors</h5>
                         <br>
                         <hr>
-                                <div class="acts-container">
+                    <div class="acts-container">
             <!-- Acts -->
             {% for inter in interplay %}
             <input type="hidden" class="act-data" data-interplay-id="{{ inter.id }}" value="{{ inter.id }}">
@@ -405,7 +406,7 @@
                     
                     <div class="card card-body mt-2">
                         <h6>Notes:</h6>
-                        <p>{{ inter.notes }}</p>
+                        <pre style="word-wrap: break-word; text-wrap: pretty; font-family: 'Poppins', sans-serif; padding: 5px;" >{{ inter.notes }}</pre>
                     </div>
                     {% endif%}
 
@@ -413,7 +414,7 @@
                     
                     <div class="card card-body mt-2">
                         <h6>References:</h6>
-                        <p>{{ inter.references }}</p>
+                        <pre style="word-wrap: break-word; text-wrap: pretty; font-family: 'Poppins', sans-serif; padding: 5px;" >{{ inter.references }}</pre>
                     </div>
                     {% endif%}
 
@@ -432,10 +433,12 @@
                         </div>
                     </div>
 
-                    <form id="interplay-comment-form">
+                    <form id="interplay-comment-form" method="post">
+                         {% csrf_token %}
                         <div class="form-group">
                         <label for="message">Add comment</label><br><br>
-                    <textarea class="form-control" id="message" name="message" placeholder="Share your thoughts on this interplay of factors"></textarea>
+                    <input type="hidden" name="interplay_id" value="{{ inter.id }}">
+                    <textarea class="form-control" id="message" name="interplay_message" placeholder="Share your thoughts on this interplay of factors"></textarea>
                     <br>
                     <button class="btn btn-primary" type="submit">Submit</button>
                     </div>
@@ -459,7 +462,7 @@
 
     <!-- Factor Modal -->
     <div class="modal" tabindex="-1" role="dialog" id="factorModal">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
@@ -473,10 +476,9 @@
                         <br>
                         <hr>
                         <h6>Description: </h6>
-                        <p id="factor-description"></p>
+                        <pre style="word-wrap: break-word; text-wrap: pretty; font-family: 'Poppins', sans-serif; padding: 5px;" id="factor-description"></pre>
                         <h6 style="display: none;" id="indicators-title">Indicators:</h6>
                         <p id="factor-indicators"></p>
-                        
                     </div>
                     {% comment %} <button type="submit" class="btn btn-success">Submit</button> {% endcomment %}
             </div>

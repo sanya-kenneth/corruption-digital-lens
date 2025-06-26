@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.db.models import Q
 from django.contrib import messages
 
-from .models import CorruptionForm, Act, Comment, CorruptionPage, Interplay
+from .models import CorruptionForm, Act, Comment, CorruptionPage, Interplay, InterplayComment
 from .forms import CommentForm, IncidentForm, FeedbackForm
 
 def home(request):
@@ -44,9 +44,14 @@ def act_detail(request, corruption_id, *args, **kwargs):
     c_form = CorruptionForm.objects.get(id=corruption_id)
     factors = c_form.factors.all()
     acts = c_form.acts.all()
-    interplay = c_form.interplay.all()
+    interplay = [Interplay.objects.filter(act=act).first() for act in acts if Interplay.objects.filter(act=act).first()]
     context = {'c_form': c_form, "factors": factors, "acts": acts, "form": CommentForm(), 'interplay': interplay}
     if request.method == 'POST':
+        inter_id = request.POST.get('interplay_id')
+        inter_comment = request.POST.get('interplay_message')
+        if inter_id and inter_comment:
+            inter = Interplay.objects.get(id=inter_id)
+            InterplayComment.objects.create(interplay=inter, comment=inter_comment)
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.cleaned_data.get('comment')

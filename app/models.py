@@ -91,7 +91,7 @@ class Interplay(models.Model):
     act = models.ForeignKey(Act, on_delete=models.CASCADE, related_name='act_interplay')
     notes = models.TextField(null=True, blank=True)
     likes = models.IntegerField(default=0)
-    corruption_form = models.ManyToManyField(CorruptionForm, related_name='interplay')
+    # corruption_form = models.ManyToManyField(CorruptionForm, related_name='interplay')
     references = models.TextField(null=True, blank=True)
     
     def __str__(self):
@@ -99,3 +99,9 @@ class Interplay(models.Model):
 
     class Meta:
         verbose_name_plural = "Interplay"
+        
+
+class InterplayComment(models.Model):
+    interplay = models.ForeignKey(Interplay, on_delete=models.CASCADE, 
+                                  related_name="interplay_comments")
+    comment = models.TextField()

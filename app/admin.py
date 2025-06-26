@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CorruptionForm, CorruptionPage, Factor, Act, Comment, Incident, Feedback, Interplay
+from .models import CorruptionForm, CorruptionPage, Factor, Act, Comment, Incident, Feedback, Interplay, InterplayComment
 from django.db import models
 
 
@@ -45,6 +45,10 @@ class InterplayAdmin(admin.ModelAdmin):
     # list_display = '__all__'
     readonly_fields = ('likes',)
     
+class InterplayCommentAdmin(admin.ModelAdmin):
+    list_display = ('interplay', 'comment')
+    readonly_fields = ('interplay', 'comment')
+    
 
 admin.site.register(CorruptionForm, CorruptionFormAdmin)
 admin.site.register(Factor, FactorAdmin)
@@ -52,6 +56,7 @@ admin.site.register(Act, ActAdmin)
 admin.site.register(Comment, CommentAdmin)
 admin.site.register(Incident, IncidentAdmin)
 admin.site.register(Interplay, InterplayAdmin)
+admin.site.register(InterplayComment, InterplayCommentAdmin)
 admin.site.register(Feedback)
 admin.site.register(CorruptionPage)
     
