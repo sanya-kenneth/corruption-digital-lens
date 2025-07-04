@@ -133,6 +133,7 @@
                     // const modalTitle = document.querySelector('.factor-modal-body h5');
 
                     const indicatorsTitlle = document.getElementById('indicators-title');
+                    const referencesTitlle = document.getElementById('references-title');
                     
                     if (modalInput) modalInput.value = factorId;
                     if (modalTitle) modalTitle.textContent = factorName;
@@ -147,11 +148,11 @@
                         modalIndicators.style.display = 'none'
                     }
                     if (factorReferences !== "None" && modalTitle.textContent == factorName) {
-                        // indicatorsTitlle.style.display = 'block';
+                        referencesTitlle.style.display = 'block';
                         modalReferences.textContent = factorReferences;
                         modalReferences.style.display = 'block'
                     } else {
-                        // indicatorsTitlle.style.display = 'none';
+                        referencesTitlle.style.display = 'none';
                         modalReferences.style.display = 'none'
                     }
                     
@@ -491,7 +492,7 @@
                         <pre style="word-wrap: break-word; text-wrap: pretty; font-family: 'Poppins', sans-serif; padding: 5px;" id="factor-description"></pre>
                         <h6 style="display: none;" id="indicators-title">Indicators:</h6>
                         <p id="factor-indicators"></p>
-                        <h6>References: </h6>
+                        <h6 style="display: none;" id="references-title">References: </h6>
                         <pre style="word-wrap: break-word; text-wrap: pretty; font-family: 'Poppins', sans-serif; padding: 5px;" id="factor-references"></pre>
                     </div>
                     {% comment %} <button type="submit" class="btn btn-success">Submit</button> {% endcomment %}
