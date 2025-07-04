@@ -347,6 +347,11 @@
           <h5>Notes: </h5>
           <pre style="word-wrap: break-word; text-wrap: pretty; font-family: 'Poppins', sans-serif; padding: 5px;">{{ corruption.notes }}</pre>
           {% endif %}
+          {% if corruption.references %}
+          <hr>
+          <h5>References: </h5>
+          <pre style="word-wrap: break-word; text-wrap: pretty; font-family: 'Poppins', sans-serif; padding: 5px;">{{ corruption.references }}</pre>
+          {% endif %}
         </div>
         <div class="modal-footer" style="text-align: center;">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>

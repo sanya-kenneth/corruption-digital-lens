@@ -18,6 +18,7 @@ class Factor(models.Model):
     description = models.TextField(null=True)
     corruption_form = models.ManyToManyField(CorruptionForm, related_name='factors')
     indicators = models.CharField(max_length=3000, null=True, blank=True)
+    references = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -49,8 +50,8 @@ class Comment(models.Model):
 class Incident(models.Model):
     form_of_corruption = models.CharField(max_length=150)
     location = models.CharField(max_length=150)
-    description = models.TextField()
-    email = models.EmailField()
+    description = models.TextField(null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
 
     
 class Feedback(models.Model):
@@ -76,6 +77,7 @@ class Feedback(models.Model):
 class CorruptionPage(models.Model):
     definition = models.TextField(default="Corruption is receiving, asking for or giving any gratification to induce a person to do a favour with a corrupt intent.")
     notes = models.TextField(null=True, blank=True)
+    references = models.TextField(null=True, blank=True)
     
     def __str__(self):
         return f"corruption => {self.definition[:70]}"

@@ -122,11 +122,13 @@
                     const factorName = button.dataset.factorName;
                     const factorDescription = button.dataset.factorDescription;
                     const factorIndicators = button.dataset.factorIndicators;
+                    const factorReferences = button.dataset.factorReferences;
                     
                     // Update modal with factor data
                     const modalInput = document.getElementById('factor-modal-input');
                     const modalTitle = document.getElementById('factor-title');
                     const modalDescription = document.getElementById('factor-description');
+                    const modalReferences = document.getElementById('factor-references');
                     const modalIndicators = document.getElementById('factor-indicators');
                     // const modalTitle = document.querySelector('.factor-modal-body h5');
 
@@ -135,6 +137,7 @@
                     if (modalInput) modalInput.value = factorId;
                     if (modalTitle) modalTitle.textContent = factorName;
                     if (modalDescription) modalDescription.textContent = factorDescription;
+                    if (modalReferences) modalReferences.textContent = factorReferences;
                     if (factorIndicators !== "None" && modalTitle.textContent == factorName) {
                         indicatorsTitlle.style.display = 'block';
                         modalIndicators.textContent = factorIndicators;
@@ -142,6 +145,14 @@
                     } else {
                         indicatorsTitlle.style.display = 'none';
                         modalIndicators.style.display = 'none'
+                    }
+                    if (factorReferences !== "None" && modalTitle.textContent == factorName) {
+                        // indicatorsTitlle.style.display = 'block';
+                        modalReferences.textContent = factorReferences;
+                        modalReferences.style.display = 'block'
+                    } else {
+                        // indicatorsTitlle.style.display = 'none';
+                        modalReferences.style.display = 'none'
                     }
                     
                     // Show modal
@@ -234,7 +245,7 @@
         {% for factor in factors %}
             <div class="col-md-2 mb-2" >
                     <div data-factor-id="{{ factor.id }}" data-factor-description="{{ factor.description }}" 
-                    data-factor-name="{{ factor.name }}" data-factor-indicators="{{ factor.indicators }}" 
+                    data-factor-name="{{ factor.name }}" data-factor-indicators="{{ factor.indicators }}" data-factor-references="{{ factor.references }}"
                     class="factor-box factor-trigger">{{ factor.name }}</div>
             </div>
             
@@ -477,6 +488,8 @@
                         <hr>
                         <h6>Description: </h6>
                         <pre style="word-wrap: break-word; text-wrap: pretty; font-family: 'Poppins', sans-serif; padding: 5px;" id="factor-description"></pre>
+                        <h6>References: </h6>
+                        <pre style="word-wrap: break-word; text-wrap: pretty; font-family: 'Poppins', sans-serif; padding: 5px;" id="factor-references"></pre>
                         <h6 style="display: none;" id="indicators-title">Indicators:</h6>
                         <p id="factor-indicators"></p>
                     </div>

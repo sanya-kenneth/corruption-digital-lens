@@ -16,7 +16,7 @@ class IncidentForm(forms.ModelForm):
     form_of_corruption = forms.CharField(max_length=150)
     location = forms.CharField(max_length=150)
     description = forms.CharField(widget=forms.Textarea(attrs={'class': 'text-area-class form-control'}))
-    email = forms.EmailInput()
+    email = forms.EmailField(required=False)
 
     class Meta:
         model = Incident
