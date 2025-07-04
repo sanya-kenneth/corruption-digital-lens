@@ -139,7 +139,7 @@
                     if (modalTitle) modalTitle.textContent = factorName;
                     if (modalDescription) modalDescription.textContent = factorDescription;
                     if (modalReferences) modalReferences.textContent = factorReferences;
-                    if (factorIndicators !== "None" && modalTitle.textContent == factorName) {
+                    if (factorIndicators !== "None" && modalTitle.textContent == factorName && factorIndicators !== "") {
                         indicatorsTitlle.style.display = 'block';
                         modalIndicators.textContent = factorIndicators;
                         modalIndicators.style.display = 'block'
@@ -147,7 +147,7 @@
                         indicatorsTitlle.style.display = 'none';
                         modalIndicators.style.display = 'none'
                     }
-                    if (factorReferences !== "None" && modalTitle.textContent == factorName) {
+                    if (factorReferences !== "None" && modalTitle.textContent == factorName && factorReferences !== "") {
                         referencesTitlle.style.display = 'block';
                         modalReferences.textContent = factorReferences;
                         modalReferences.style.display = 'block'
