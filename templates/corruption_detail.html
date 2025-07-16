@@ -85,30 +85,107 @@
         }
     </style>
     <script type="text/javascript">
-        document.addEventListener('DOMContentLoaded', function() {
-            // Handle comment button clicks
-            document.addEventListener('click', function(e) {
-                if (e.target.closest('.comment-trigger')) {
-                    e.preventDefault();
-                    
-                    const button = e.target.closest('.comment-trigger');
-                    const actId = button.dataset.actId;
-                    const actName = button.dataset.actName;
-                    
-                    // Update modal with act data
-                    const modalInput = document.getElementById('modal-input');
-                    const modalTitle = document.querySelector('.modal-body h5');
-                    
-                    if (modalInput) modalInput.value = actId;
-                    if (modalTitle) modalTitle.textContent = actName;
-                    
-                    // Show modal
-                    const modal = new bootstrap.Modal(document.getElementById('myModal'));
-                    modal.show();
-                }
-            });
-        });
+// Cross-browser compatible event handling
+function addEvent(element, type, handler) {
+    if (element.addEventListener) {
+        element.addEventListener(type, handler, false);
+    } else if (element.attachEvent) {
+        element.attachEvent('on' + type, handler);
+    } else {
+        element['on' + type] = handler;
+    }
+}
+
+// Cross-browser compatible closest() polyfill
+function closest(element, selector) {
+    if (element.closest) {
+        return element.closest(selector);
+    }
+    
+    // Polyfill for older browsers
+    var matchesSelector = element.matches || element.webkitMatchesSelector || element.mozMatchesSelector || element.msMatchesSelector;
+    
+    while (element) {
+        if (matchesSelector.call(element, selector)) {
+            return element;
+        }
+        element = element.parentElement;
+    }
+    return null;
+}
+
+// Cross-browser compatible dataset access
+function getDataset(element, key) {
+    if (element.dataset) {
+        return element.dataset[key];
+    }
+    // Fallback for older browsers
+    return element.getAttribute('data-' + key.replace(/[A-Z]/g, function(match) {
+        return '-' + match.toLowerCase();
+    }));
+}
+
+// Main function
+function initCommentModal() {
+    addEvent(document, 'click', function(e) {
+        e = e || window.event;
+        var target = e.target || e.srcElement;
         
+        var button = closest(target, '.comment-trigger');
+        if (!button) return;
+        
+        // Prevent default
+        if (e.preventDefault) {
+            e.preventDefault();
+        } else {
+            e.returnValue = false;
+        }
+        
+        var actId = getDataset(button, 'actId');
+        var actName = getDataset(button, 'actName');
+        
+        if (!actId || !actName) return;
+        
+        // Update modal content
+        var modalInput = document.getElementById('modal-input');
+        var modalTitle = document.querySelector ? 
+            document.querySelector('.modal-body h5') : 
+            document.getElementsByTagName('h5')[0]; // Fallback
+        
+        if (modalInput) modalInput.value = actId;
+        if (modalTitle) {
+            if (modalTitle.textContent !== undefined) {
+                modalTitle.textContent = actName;
+            } else {
+                modalTitle.innerText = actName; // IE8 fallback
+            }
+        }
+        
+        // Show modal
+        var modalElement = document.getElementById('myModal');
+        if (modalElement && typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+            var modal = new bootstrap.Modal(modalElement);
+            modal.show();
+        }
+    });
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+    if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', initCommentModal);
+    } else if (document.attachEvent) {
+        document.attachEvent('onreadystatechange', function() {
+            if (document.readyState === 'complete') {
+                initCommentModal();
+            }
+        });
+    } else {
+        window.onload = initCommentModal;
+    }
+} else {
+    initCommentModal();
+}
     </script>
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function() {

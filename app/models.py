@@ -46,6 +46,10 @@ class Comment(models.Model):
     def ___str__(self):
         return f"{self.comment[:15]} {self.created_at}"
     
+    class Meta:
+        verbose_name = 'Acts comments'
+        verbose_name_plural = 'Acts comments'
+    
 
 class Incident(models.Model):
     form_of_corruption = models.CharField(max_length=150)
@@ -72,6 +76,10 @@ class Feedback(models.Model):
             self.feedback_type == 1 else "General Feedback" if self.feedback_type == 2 else\
                 "General Feedback" if self.feedback_type == 2 else "Compliment" if self.feedback_type == 3 else "Complaint"
         return f"{self.name}_{_type}_{self.message[:30]}"
+    
+    class Meta:
+        verbose_name = 'Feedback'
+        verbose_name_plural = 'Feedback'
 
 
 class CorruptionPage(models.Model):

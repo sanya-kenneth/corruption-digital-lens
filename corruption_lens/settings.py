@@ -26,7 +26,13 @@ SECRET_KEY = ')9&j52$60d=il%c3b8ju6a6$w+@si$!wgtizqgel!uj5h_0xj3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['f0d5-41-210-147-206.ngrok-free.app']
+ALLOWED_HOSTS = ['*', 'localhost', '127.0.0.1', '.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.ngrok-free.app',  # Allows any ngrok subdomain
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+]
 
 
 # Application definition

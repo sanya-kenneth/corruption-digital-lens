@@ -49,6 +49,9 @@ class InterplayCommentAdmin(admin.ModelAdmin):
     list_display = ('interplay', 'comment')
     readonly_fields = ('interplay', 'comment')
     
+class FeedbackAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'feedback_type', 'message')
+    
 
 admin.site.register(CorruptionForm, CorruptionFormAdmin)
 admin.site.register(Factor, FactorAdmin)
@@ -57,6 +60,6 @@ admin.site.register(Comment, CommentAdmin)
 admin.site.register(Incident, IncidentAdmin)
 admin.site.register(Interplay, InterplayAdmin)
 admin.site.register(InterplayComment, InterplayCommentAdmin)
-admin.site.register(Feedback)
+admin.site.register(Feedback, FeedbackAdmin)
 admin.site.register(CorruptionPage)
-    
+  
