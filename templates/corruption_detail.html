@@ -116,6 +116,7 @@ function closest(element, selector) {
 
 // Cross-browser compatible dataset access
 function getDataset(element, key) {
+    console.log(element.dataset)
     if (element.dataset) {
         return element.dataset[key];
     }

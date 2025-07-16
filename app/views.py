@@ -56,7 +56,8 @@ def act_detail(request, corruption_id, *args, **kwargs):
         if form.is_valid():
             comment = form.cleaned_data.get('comment')
             act = form.cleaned_data.get('act')
-            act = Act.objects.filter(id=int(act[0])).first()
+            act = act[0] if isinstance(act, list) else act
+            act = Act.objects.filter(id=int(act)).first()
             _ = Comment.objects.create(comment=comment, act=act)
             # form.save()
             return redirect('act_detail', corruption_id=corruption_id)
