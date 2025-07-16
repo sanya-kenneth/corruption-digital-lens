@@ -396,10 +396,10 @@ if (document.readyState === 'loading') {
                     <div style="margin-top: 5px;">
                         <div class="d-flex flex-row-reverse">
                             <button class="comment-trigger" data-act-id="{{ act.id }}" data-act-name="{{ act.name }}">
-                                <i class="fa-regular fa-comment the-icon"></i>
+                                <span class="the-icon">comment</span>  <i class="fa-regular fa-comment the-icon"></i>
                             </button>
                             <div>
-                                <i class="fa fa-regular fa-thumbs-up the-icon" style="margin-right: 8px;"
+                                <span class="the-icon">like</span> <i class="fa fa-regular fa-thumbs-up the-icon" style="margin-right: 8px;"
                                     onclick="window.location.href='{% url 'register-like' act.id c_form.id %}';">
                                     <span class="the-icon" style="font-size: 16px;">{{ act.likes }}</span>
                                 </i>
