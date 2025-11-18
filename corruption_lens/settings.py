@@ -38,13 +38,18 @@ CSRF_TRUSTED_ORIGINS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app'
+    'app',
+]
+
+INSTALLED_APPS += [
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -155,3 +160,94 @@ MEDIA_URL = '/image_files/'
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
+
+JAZZMIN_SETTINGS = {
+    # ... your existing settings (logo, theme, etc.) ...
+
+    # This creates the order of sections in the sidebar
+    "order_with_respect_to": [
+        "Core Content",           # ← your Acts, Factors, Forms, etc.
+        "Questionnaires",         # ← This will be your dedicated section
+        "User Submissions",       # ← Incidents, Feedback, Comments
+        "Authentication",         # ← auth.User, auth.Group (optional)
+    ],
+
+    # Optional: Nice icons for each section
+    "icons": {
+        # Your questionnaire models
+        "app.SystemResponse": "fas fa-clipboard-list",
+        "app.PublicResponse": "fas fa-users",
+        "app.EmployeeResponse": "fas fa-briefcase",
+
+        # Other models (example)
+        "app.Act": "fas fa-gavel",
+        "app.Factor": "fas fa-puzzle-piece",
+        "app.CorruptionForm": "fas fa-file-alt",
+        "app.Incident": "fas fa-exclamation-triangle",
+        "app.Feedback": "fas fa-comment-dots",
+
+        "auth.user": "fas fa-user",
+        "auth.group": "fas fa-users-cog",
+    },
+
+    "default_icon_parents": "fas fa-folder",
+    "default_icon_children": "fas fa-file-alt",
+
+    # Show the UI builder so you can tweak colors live
+    "show_ui_builder": True,
+}
+
+ADMIN_REORDER = (
+    # Reorder apps (or use custom section names as "apps")
+    'app',  # Replace with your actual app name (e.g., 'corruption')
+    'auth',      # Built-in users/groups
+
+    # Custom sections/groups (use strings like app names)
+    'Core Content',
+    'Questionnaires',
+    'User Submissions',
+)
+
+# Models within each "app" or section (list them in order)
+ADMIN_REORDER_MODELS = {
+    'app': [  # Your main app
+        'CorruptionForm',
+        'Factor',
+        'Act',
+        'Comment',
+        'Incident',
+        'Interplay',
+        'InterplayComment',
+        'Feedback',
+    ],
+    'Core Content': [  # Virtual group for core models (pull from your_app)
+        {'model': 'app.corruptionform', 'label': 'Corruption Forms'},
+        {'model': 'app.factor', 'label': 'Factors'},
+        {'model': 'app.act', 'label': 'Acts'},
+    ],
+    'Questionnaires': [  # ← Your dedicated section!
+        {'model': 'app.systemresponse', 'label': 'System Responses'},
+        {'model': 'app.publicresponse', 'label': 'Public Responses'},
+        {'model': 'app.employeeresponse', 'label': 'Employee Responses'},
+    ],
+    'User Submissions': [
+        {'model': 'app.comment', 'label': 'Comments'},
+        {'model': 'app.incident', 'label': 'Incidents'},
+        {'model': 'app.feedback', 'label': 'Feedback'},
+    ],
+    'auth': [
+        'User',
+        'Group',
+    ],
+}
+
+# # Optional: Rename app/section labels
+# ADMIN_REORDER_APP_LABELS = {
+#     'your_app': 'Corruption Data',
+#     'auth': 'Authentication',
+# }
+
+# # Optional: Exclude models (they still accessible via URL)
+# ADMIN_REORDER_EXCLUDE = (
+#     # ('your_app', 'SomePrivateModel'),  # Uncomment to hide
+# )

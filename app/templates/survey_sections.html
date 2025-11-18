@@ -1,0 +1,74 @@
+{% load survey_tags %}   {# <-- ADD THIS #}
+
+<h4 class="section-title">SECTION B</h4>
+
+<!-- Part 1 – Economic -->
+<h5>Part 1 – Economic Factors</h5>
+<table class="table table-bordered likert-table mb-4">
+  <thead class="table-light"><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+  <tbody>
+    {% likert_row economic_form.adequate_income %}
+    {% likert_row economic_form.economic_freedom %}
+    {% likert_row economic_form.inflation_affect %}
+    {% likert_row economic_form.international_trade %}
+    {% likert_row economic_form.national_trade %}
+  </tbody>
+</table>
+
+<!-- Part 2 – Social -->
+<h5>Part 2 – Social Factors</h5>
+<table class="table table-bordered likert-table mb-4">
+  <thead class="table-light"><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+  <tbody>
+    {% likert_row social_form.social_distress %}
+    {% likert_row social_form.social_exclusion %}
+    {% likert_row social_form.religious_beliefs %}
+    {% likert_row social_form.male_dominance %}
+    {% likert_row social_form.middle_class_life %}
+    {% likert_row social_form.value_education %}
+    {% likert_row social_form.low_job_intensity %}
+  </tbody>
+</table>
+
+<!-- Part 3 – Political -->
+<h5>Part 3 – Political Factors</h5>
+<table class="table table-bordered likert-table mb-4">
+  <thead class="table-light"><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+  <tbody>
+    {% likert_row political_form.rule_of_law %}
+    {% likert_row political_form.state_land_control %}
+    {% likert_row political_form.democracy_practice %}
+    {% likert_row political_form.political_rights %}
+    {% likert_row political_form.civil_liberties %}
+    {% likert_row political_form.fair_elections %}
+    {% likert_row political_form.political_stability %}
+    {% likert_row political_form.policy_framework %}
+  </tbody>
+</table>
+
+<!-- Part 4 – Digital -->
+<h5>Part 4 – Digital Infrastructure</h5>
+<table class="table table-bordered likert-table mb-4">
+  <thead class="table-light"><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+  <tbody>
+    {% likert_row digital_form.digital_infra_avail %}
+    {% likert_row digital_form.access_computers %}
+    {% likert_row digital_form.support_infra %}
+    {% likert_row digital_form.invest_policy %}
+    {% likert_row digital_form.improves_work %}
+    {% likert_row digital_form.frequent_use %}
+  </tbody>
+</table>
+
+<!-- Part 5 – Participation -->
+<h5>Part 5 – Citizen Participation</h5>
+<table class="table table-bordered likert-table mb-4">
+  <thead class="table-light"><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+  <tbody>
+    {% likert_row participation_form.council_meetings %}
+    {% likert_row participation_form.discuss_policies %}
+    {% likert_row participation_form.contribute_services %}
+    {% likert_row participation_form.public_info %}
+    {% likert_row participation_form.decision_making %}
+  </tbody>
+</table>

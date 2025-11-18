@@ -1,0 +1,400 @@
+{% comment %} {% extends 'base.html' %} {% endcomment %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet" />
+      <!-- Bootstrap CSS -->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Font Awesome -->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    {% comment %} <link rel="stylesheet" href="./styles.css" /> {% endcomment %}
+    <title>Corruption Report Form</title>
+    <style>
+        html {
+            overflow-x: hidden;
+          }
+          body {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+            background:rgb(234, 233, 233);
+            overflow: scroll;
+          }
+          
+          header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 0 70px;
+            height: 80px;
+            flex-wrap: wrap;
+          }
+          header nav ul {
+            display: flex;
+            gap: 10px;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+          }
+          header h1 {
+            white-space: nowrap;
+            font-size: 24px;
+            font-weight: 700;
+          }
+          
+          .report-container {
+            background: linear-gradient(to bottom, rgba(111, 109, 219, 0.8), rgba(33, 33, 92, 0.9)), url('/api/placeholder/1200/400') center/cover no-repeat;
+            color: white;
+            padding: 2rem 1rem;
+          } 
+          
+          .form-container {
+            display: flex;
+            flex-direction: row;
+            background-color: #fff;
+            margin: 50px auto;
+            margin-bottom: 300px;
+            width: 85%;
+            padding: 5%;
+            border-radius: 12px;
+            overflow: scroll;
+            {% comment %} padding: 10%; {% endcomment %}
+            {% comment %} border: 1px solid red; {% endcomment %}
+          }
+          
+          {% comment %} .image-container {
+            width: 50%;
+            overflow: hidden;
+            height: 680px;
+          } {% endcomment %}
+          {% comment %} .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+          } {% endcomment %}
+          
+          .form-container form {
+            width: 100%;
+            {% comment %} padding: 30px 20px; {% endcomment %}
+          }
+          {% comment %} .form-container form div {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+          } {% endcomment %}
+         .form-container input,
+          textarea {
+            width: auto;
+            {% comment %} padding: 12px; {% endcomment %}
+            {% comment %} margin-bottom: 10px; {% endcomment %}
+            border-radius: 6px;
+            {% comment %} background-color:rgb(245, 242, 242); {% endcomment %}
+            border: 2px solid rgba(103, 14, 157, 0.75);
+            {% comment %} border: none;s {% endcomment %}
+            {% comment %} outline: none; {% endcomment %}
+            {% comment %} margin-top: 8px; {% endcomment %}
+            font-size: 16px;
+            {% comment %} display: block; {% endcomment %}
+          }
+         .form-container textarea {
+            width: 100%;
+          }
+          {% comment %} .form-container button {
+            padding: 12px;
+            width: 100%;
+            color: #fff;
+            background-color: #0000ff;
+            border: none;
+            font-weight: 700;
+            border-radius: 8px;
+          } {% endcomment %}
+          
+          @media (max-width: 1024px) {
+            header {
+              padding: 0 20px;
+              flex-direction: column;
+              align-items: flex-start;
+              height: auto;
+            }
+          
+            .form-container {
+              flex-direction: column;
+              width: 95%;
+            }
+          
+            {% comment %} .image-container,
+            .form-container form {
+              width: 100%;
+            }
+          
+            .image-container {
+              height: 250px;
+            } {% endcomment %}
+          
+            .report-container {
+              padding: 20px;
+            }
+          }
+          
+          @media (max-width: 600px) {
+            header h1 {
+              font-size: 18px;
+            }
+          
+            .report-container {
+              padding: 10px 15px;
+            }
+          
+            .form-container {
+              width: 100%;
+              margin: 10px auto;
+            }
+          
+            .form-container form {
+              padding: 20px 15px;
+            }
+          
+            .image-container {
+              height: 200px;
+            }
+          
+            textarea {
+              font-size: 14px;
+            }
+          
+            .form-container input,
+            .form-container select {
+              font-size: 14px;
+            }
+          }
+          footer {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            color: #555;
+        }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1 class="">Corruption Digital Lens</h1>
+      <nav>
+        <ul>
+          <li><a class="nav-link" href="/">Home</a></li>
+          <li><a class="nav-link" href="/feedback">Feedback</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="report-container">
+        <div>
+          <i></i>
+          <img src="" alt="">
+          
+        </div>
+
+        <h1>Survey</h1>
+      </div>
+      <div class="d-flex flex-row justify-content-center align-items-center form-container">
+    <div class="container">
+    <!-- Header with Logo and University Details -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-8 text-center">
+            <img src="https://veldfiremedia.com/wp-content/uploads/2022/12/UCT-logo-1200x620-1.png" alt="University of Cape Town Logo" style="max-width: 200px;">
+            <h5>University of Cape Town</h5>
+            <p>Department of Information Systems<br>
+            Leslie Commerce Building<br>
+            Upper Campus<br>
+            Private Bag X3 - Rondebosch - 7701<br>
+            Tel: +27 (0) 21 650 2261 Fax: +27 (0) 21 650 2280</p>
+        </div>
+    </div>
+
+    <h1>A Survey on digital technology framework for mitigating corruption in public organizations of Uganda</h1>
+    
+    <p>Digital technology framework is defined as an integrated Information Technology based framework consisting of interacting 
+    components that work together to realize a set of functions to create a usable product for solving a problem (Mousa et al., 2024). 
+    Mitigated corruption is a reduction in corruption that is achieved when a set of strategies is applied in public organizations. Corruption 
+    includes anything that involves abuse of a person’s or organization’s position entrusted to them in the public or private sector for the 
+    benefit of a few individuals or organizations to detriment of the well-being of other people or organizations (Inuwa & Ononiwa, 2020; 
+    Damijan, 2023)</p>
+    
+    <p>Dear respondent, thank you for participating in this survey. You have been earmarked to possess the required knowledge on 
+    corruption and its mitigation. The purpose of the study is to develop a digital technology framework for mitigating corruption. 
+    The survey will take approximately 10 minutes. The participation in the survey is voluntary and you can choose to exit at any 
+    time. You are therefore requested to respond to the questions detailed in this survey and the information provided will be 
+    handled with at most privacy and will solely be used for academic purposes</p>
+    
+    {% if is_post %}
+    <p>Please note that this section enables the researcher to obtain information related to how the designed digital tool (The corruption 
+    digital lens) mitigates corruption in public organizations</p>
+    {% else %}
+    <p>Please note that this section enables the researcher to get information related to the level of corruption in public organizations</p>
+    {% endif %}
+    
+    <form method="post" class="mt-4">
+        {% csrf_token %}
+        
+        <h2>A. General Information – Demographics (Respondent demographics)</h2>
+        <p>B. Please tick appropriately</p>
+        <table class="table table-bordered bg-light">
+            <tr><th>1. Gender</th><td>{{ respondent_form.gender }}</td></tr>
+            <tr><th>2. Age</th><td>{{ respondent_form.age }}</td></tr>
+            <tr><th>3. Highest level of Formal education</th><td>{{ respondent_form.education }}</td></tr>
+            <tr><th>5. Religious Affiliation</th><td>{{ respondent_form.religion }} {{ respondent_form.religion_other }}</td></tr>
+            <tr><th>6. Experience with work in the organization</th><td>{{ respondent_form.experience }}</td></tr>
+            <tr><th>7. Family Size (Number of family members)</th><td>{{ respondent_form.family_size }}</td></tr>
+            <tr><th>8. Marital status</th><td>{{ respondent_form.marital_status }}</td></tr>
+            <tr><th>9. Income category (monthly gross salary in Millions of UGX)</th><td>{{ respondent_form.income }}</td></tr>
+        </table>
+        
+        <h3>Demographics about your organization</h3>
+        <table class="table table-bordered bg-light">
+            <tr><th>10. Organization Category (eg Education, security, Judiciary etc)</th><td>{{ respondent_form.org_category }}</td></tr>
+            <tr><th>11. Organization age (in years)</th><td>{{ respondent_form.org_age }}</td></tr>
+            <tr><th>12. Organization size (No of employees)</th><td>{{ respondent_form.org_size }}</td></tr>
+            <tr><th>13. Organization Location</th><td>{{ respondent_form.org_location }}</td></tr>
+        </table>
+        
+        {% if not is_post %}
+        <h2>SECTION B</h2>
+        
+        <h3>Part 1</h3>
+        <p>Please indicate your agreement/disagreement with the statement below (1=Strongly Disagree; 2=Disagree; 3=Somewhat Agree; 4= Agree, 5= Strongly Agree) in the context of this organization</p>
+        <table class="table table-bordered bg-light">
+            <thead><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+            <tr><td>1: Employees in our organization have adequate-income levels</td><td colspan="5">{{ economic_form.adequate_income }}</td></tr>
+            <tr><td>2: We have economic freedom whereby Individuals control their assets and labour without state interruptions</td><td colspan="5">{{ economic_form.economic_freedom }}</td></tr>
+            <tr><td>3: Employees’ income is affected by inflation</td><td colspan="5">{{ economic_form.inflation_affect }}</td></tr>
+            <tr><td>4: We freely engage in international trade activities</td><td colspan="5">{{ economic_form.international_trade }}</td></tr>
+            <tr><td>5: We freely engage in national trade activities</td><td colspan="5">{{ economic_form.national_trade }}</td></tr>
+        </table>
+        
+        <h3>Part 2</h3>
+        <p>Please indicate your agreement/disagreement with the statement below (1=Strongly Disagree; 2=Disagree; 3=Somewhat Agree; 4= Agree, 5= Strongly Agree) in the context of this organization</p>
+        <table class="table table-bordered bg-light">
+            <thead><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+            <tr><td>1: Some workers suffer from social distress</td><td colspan="5">{{ social_form.social_distress }}</td></tr>
+            <tr><td>2: Social exclusion is experienced by some workers</td><td colspan="5">{{ social_form.social_exclusion }}</td></tr>
+            <tr><td>3: Employees have strong religious beliefs</td><td colspan="5">{{ social_form.religious_beliefs }}</td></tr>
+            <tr><td>4: Majority of males take administrative/management roles compared to females</td><td colspan="5">{{ social_form.male_dominance }}</td></tr>
+            <tr><td>5: Most people live a life of middle-income class</td><td colspan="5">{{ social_form.middle_class_life }}</td></tr>
+            <tr><td>6: Our organisation values highly educated employees</td><td colspan="5">{{ social_form.value_education }}</td></tr>
+            <tr><td>7: We have workers from families with low job intensity like families with few people having formal jobs</td><td colspan="5">{{ social_form.low_job_intensity }}</td></tr>
+        </table>
+        
+        <h3>Part 3</h3>
+        <p>Please indicate your agreement/disagreement with the statement below (1=Strongly Disagree; 2=Disagree; 3=Somewhat Agree; 4= Agree, 5= Strongly Agree) in the context of this organization</p>
+        <table class="table table-bordered bg-light">
+            <thead><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+            <tr><td>1: Our decisions are based on rule of Law that is individuals are subjected to the same laws</td><td colspan="5">{{ political_form.rule_of_law }}</td></tr>
+            <tr><td>2: In our country, land is controlled by the state</td><td colspan="5">{{ political_form.state_land_control }}</td></tr>
+            <tr><td>3: We often practise democracy in our organization</td><td colspan="5">{{ political_form.democracy_practice }}</td></tr>
+            <tr><td>4: There is observance of political rights</td><td colspan="5">{{ political_form.political_rights }}</td></tr>
+            <tr><td>5: We have civil liberties that is personal liberties without interference from the state</td><td colspan="5">{{ political_form.civil_liberties }}</td></tr>
+            <tr><td>6: There is freedom to choose leaders via fair elections</td><td colspan="5">{{ political_form.fair_elections }}</td></tr>
+            <tr><td>7: Political stability exists in our organisation</td><td colspan="5">{{ political_form.political_stability }}</td></tr>
+            <tr><td>8: We are guided by policy and institutional framework</td><td colspan="5">{{ political_form.policy_framework }}</td></tr>
+        </table>
+        
+        <h3>Part 4</h3>
+        <p>Please indicate your agreement/disagreement with the statement below (1=Strongly Disagree; 2=Disagree; 3=Somewhat Agree; 4= Agree, 5= Strongly Agree) in the context of this organization</p>
+        <table class="table table-bordered bg-light">
+            <thead><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+            <tr><td>1: There is availability of digital infrastructure</td><td colspan="5">{{ digital_form.digital_infra_avail }}</td></tr>
+            <tr><td>2: We have access to digital infrastructure like computers</td><td colspan="5">{{ digital_form.access_computers }}</td></tr>
+            <tr><td>3: We have access to support infrastructure like internet and electricity</td><td colspan="5">{{ digital_form.support_infra }}</td></tr>
+            <tr><td>4: We have a policy of investing in digital Technology</td><td colspan="5">{{ digital_form.invest_policy }}</td></tr>
+            <tr><td>5: The use of digital technology makes work better</td><td colspan="5">{{ digital_form.improves_work }}</td></tr>
+            <tr><td>6: We frequently use digital technologies for executing activities</td><td colspan="5">{{ digital_form.frequent_use }}</td></tr>
+        </table>
+        
+        <h3>Part 5</h3>
+        <p>Please indicate your agreement/disagreement with the statement below (1=Strongly Disagree; 2=Disagree; 3=Somewhat Agree; 4= Agree, 5= Strongly Agree) in the context of this organization</p>
+        <table class="table table-bordered bg-light">
+            <thead><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+            <tr><td>1: I have attended local council meetings in the past 12months</td><td colspan="5">{{ participation_form.council_meetings }}</td></tr>
+            <tr><td>2: I take part in discussion of public policies in the country</td><td colspan="5">{{ participation_form.discuss_policies }}</td></tr>
+            <tr><td>3: I contribute and deliberate on services in my country</td><td colspan="5">{{ participation_form.contribute_services }}</td></tr>
+            <tr><td>4: The government provides me with public information as and when demanded</td><td colspan="5">{{ participation_form.public_info }}</td></tr>
+            <tr><td>5: I engage in decision making processes of the government</td><td colspan="5">{{ participation_form.decision_making }}</td></tr>
+        </table>
+        {% endif %}
+        
+        <h3>{% if is_post %}Corruption Mitigation with Digital Lens{% else %}Part 6{% endif %}</h3>
+        <p>Please indicate your agreement/disagreement with the statement below (1=Strongly Disagree; 2=Disagree; 3=Somewhat Agree; 4= Agree, 5= Strongly Agree)</p>
+        
+        <h4>Bribery</h4>
+        <table class="table table-bordered bg-light">
+            <thead><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+            <tr><td>{% if is_post %}1: The corruption digital lens (system) can mitigate bribes offered by the public to organization workers{% else %}1: We have people from the public who offer bribes to organization workers{% endif %}</td><td colspan="5">{{ corruption_form.public_bribes }}</td></tr>
+            <tr><td>{% if is_post %}2: The corruption digital lens minimises the request for gifts or informal payments by organization workers from the public to get things done{% else %}2: Organization workers often request for gifts or informal payments to get things done{% endif %}</td><td colspan="5">{{ corruption_form.request_gifts }}</td></tr>
+            <tr><td>{% if is_post %}3: The corruption digital lens can discourage people who usually offer bribes for convenience reasons{% else %}3: In our organisation, there are people who usually offer bribes for convenience reasons{% endif %}</td><td colspan="5">{{ corruption_form.convenience_bribes }}</td></tr>
+            <tr><td>{% if is_post %}4: The corruption digital lens can minimise the rate at which people usually offer bribes to get faster services{% else %}4: People usually offer bribes to get faster services in our organisation{% endif %}</td><td colspan="5">{{ corruption_form.faster_services }}</td></tr>
+            <tr><td>{% if is_post %}5: The corruption digital lens can discourage people who usually offer bribes for concealment of offences committed{% else %}5: In our organisation, some people offer bribes for concealment of offences committed{% endif %}</td><td colspan="5">{{ corruption_form.concealment_bribes }}</td></tr>
+        </table>
+        
+        <h4>Nepotism</h4>
+        <table class="table table-bordered bg-light">
+            <thead><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+            <tr><td>{% if is_post %}1: The corruption digital lens can discourage organization officials from using facilities like vehicles to benefit their families{% else %}1: Organization officials use facilities like vehicles to benefit their families{% endif %}</td><td colspan="5">{{ corruption_form.use_facilities_family }}</td></tr>
+            <tr><td>{% if is_post %}2: The corruption digital lens discourages job offers that are not done through public job advertisements{% else %}2: Job offers are usually not done through public job advertisements in this organisation{% endif %}</td><td colspan="5">{{ corruption_form.no_public_ads }}</td></tr>
+            <tr><td>{% if is_post %}3: The corruption digital lens discourages leaders from employing people from only one tribe in the same organization{% else %}3: Most people in our organisation come from the same tribe{% endif %}</td><td colspan="5">{{ corruption_form.same_tribe }}</td></tr>
+            <tr><td>{% if is_post %}4: The corruption digital lens mitigates against promotions of organization workers from the same tribe{% else %}4: Promotions of organization workers from the same tribe takes place{% endif %}</td><td colspan="5">{{ corruption_form.tribe_promotions }}</td></tr>
+            <tr><td>{% if is_post %}5: The corruption digital lens discourages against workers earning far more than their colleagues who are of the same rank{% else %}5: Some workers earn far more than their colleagues who are of the same rank{% endif %}</td><td colspan="5">{{ corruption_form.unequal_pay }}</td></tr>
+            <tr><td>{% if is_post %}6: The corruption digital lens exposes employees without the required academic qualifications{% else %}6: At times our organisation employs people without the required academic qualifications{% endif %}</td><td colspan="5">{{ corruption_form.unqualified_employ }}</td></tr>
+        </table>
+        
+        <h4>Favoritism</h4>
+        <table class="table table-bordered bg-light">
+            <thead><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+            <tr><td>{% if is_post %}1: The corruption digital lens mitigates against asset disposition at low prices to friends of organization workers{% else %}1: There is asset disposition at low prices to friends of organization workers{% endif %}</td><td colspan="5">{{ corruption_form.low_price_assets }}</td></tr>
+            <tr><td>{% if is_post %}2: The corruption digital lens discourages against favouring friends and acquaintances over others in profitable activities for example contracts, promotions{% else %}2: Favouring friends and acquaintances over others in profitable activities often takes place{% endif %}</td><td colspan="5">{{ corruption_form.favor_friends }}</td></tr>
+            <tr><td>{% if is_post %}3: The corruption digital lens encourages high level managers to demote or fire friends if they prove to be inefficient{% else %}3: High level managers do not demote or fire friends if they prove to be inefficient{% endif %}</td><td colspan="5">{{ corruption_form.no_demote_friends }}</td></tr>
+            <tr><td>{% if is_post %}4: The corruption digital lens mitigates appointment and promotion based on political affiliation{% else %}4: Appointment and promotion are connected to political affiliation{% endif %}</td><td colspan="5">{{ corruption_form.political_appoint }}</td></tr>
+            <tr><td>{% if is_post %}5: The corruption digital lens discourages sex discrimination in the recruitment and advancement process of an organization{% else %}5: Sex discrimination at times exists in the recruitment process{% endif %}</td><td colspan="5">{{ corruption_form.sex_discrimination }}</td></tr>
+            <tr><td>{% if is_post %}6: The corruption digital lens discourages most employees in an organization having the same religious affiliation{% else %}6: Most employees in our organization have the same religious affiliation{% endif %}</td><td colspan="5">{{ corruption_form.same_religion }}</td></tr>
+        </table>
+        
+        <h4>Embezzlement</h4>
+        <table class="table table-bordered bg-light">
+            <thead><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+            <tr><td>{% if is_post %}1: The corruption digital lens mitigates people doing private work during working hours for their personal gain{% else %}1: Some people do private work during working hours for their personal gain{% endif %}</td><td colspan="5">{{ corruption_form.private_work_hours }}</td></tr>
+            <tr><td>{% if is_post %}2: The corruption digital lens discourages theft of organizational properties{% else %}2: There is theft of organizational properties{% endif %}</td><td colspan="5">{{ corruption_form.theft_properties }}</td></tr>
+            <tr><td>{% if is_post %}3: The corruption digital lens mitigates theft of funds{% else %}3: There is theft of funds in our organization{% endif %}</td><td colspan="5">{{ corruption_form.theft_funds }}</td></tr>
+            <tr><td>{% if is_post %}4: The corruption digital lens limits accounting officers from changing figures in financial account reports for their personal gain{% else %}4: Some accounting officers change figures in financial account reports for their personal gain{% endif %}</td><td colspan="5">{{ corruption_form.alter_reports }}</td></tr>
+            <tr><td>{% if is_post %}5: The corruption digital lens discourages accounting officers from altering financial figures to avoid or evade taxes{% else %}5: Some accounting officers sometimes alter financial figures to avoid or evade taxes{% endif %}</td><td colspan="5">{{ corruption_form.evade_taxes }}</td></tr>
+            <tr><td>{% if is_post %}6: The corruption digital lens discourages use of agency resources for private purposes{% else %}6: Agency resources are often used for private purposes{% endif %}</td><td colspan="5">{{ corruption_form.private_use_resources }}</td></tr>
+        </table>
+        
+        <h4>Other Comments</h4>
+        <p>If there are any comments, please provide them in this section.</p>
+        {{ corruption_form.comments }}
+        
+        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        <br>
+    </form>
+     <br>
+</div>
+
+
+      </div>
+      <footer class="footer fixed-bottom">
+        <p>© 2025 Ayebare Joanina. All rights reserved.</p>
+        <p>This platform aims to educate the public about corruption laws in Uganda.</p>
+    </footer>
+    </main>
+
+  </body>
+</html>
+
+

@@ -1,0 +1,78 @@
+<!-- templates/survey/partials/section_b_full.html -->
+<h3 class="mt-5 border-bottom pb-3 text-primary">
+    SECTION B – Contextual Factors Influencing Corruption
+</h3>
+<p>Please indicate your agreement/disagreement with the statement below (1=Strongly Disagree; 2=Disagree; 3=Somewhat Agree; 4=Agree; 5=Strongly Agree) in the context of this organization</p>
+
+<!-- Part 1 – Economic -->
+<h4 class="mt-5">Part 1</h4>
+<table class="table table-bordered likert-table">
+    <thead class="table-primary">
+        <tr><th style="width:65%">Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>1. Employees in our organization have adequate-income levels</td><td colspan="5" class="text-center">{{ economic_form.adequate_income }}</td></tr>
+        <tr><td>2. We have economic freedom whereby individuals control their assets and labour without state interruptions</td><td colspan="5" class="text-center">{{ economic_form.economic_freedom }}</td></tr>
+        <tr><td>3. Employees’ income is affected by inflation</td><td colspan="5" class="text-center">{{ economic_form.inflation_affect }}</td></tr>
+        <tr><td>4. We freely engage in international trade activities</td><td colspan="5" class="text-center">{{ economic_form.international_trade }}</td></tr>
+        <tr><td>5. We freely engage in national trade activities</td><td colspan="5" class="text-center">{{ economic_form.national_trade }}</td></tr>
+    </tbody>
+</table>
+
+<!-- Part 2 – Social -->
+<h4 class="mt-5">Part 2</h4>
+<table class="table table-bordered likert-table">
+    <thead class="table-primary"><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+    <tbody>
+        <tr><td>1. Some workers suffer from social distress</td><td colspan="5" class="text-center">{{ social_form.social_distress }}</td></tr>
+        <tr><td>2. Social exclusion is experienced by some workers</td><td colspan="5" class="text-center">{{ social_form.social_exclusion }}</td></tr>
+        <tr><td>3. Employees have strong religious beliefs</td><td colspan="5" class="text-center">{{ social_form.religious_beliefs }}</td></tr>
+        <tr><td>4. Majority of males take administrative/management roles compared to females</td><td colspan="5" class="text-center">{{ social_form.male_dominance }}</td></tr>
+        <tr><td>5. Most people live a life of middle-income class</td><td colspan="5" class="text-center">{{ social_form.middle_class_life }}</td></tr>
+        <tr><td>6. Our organisation values highly educated employees</td><td colspan="5" class="text-center">{{ social_form.value_education }}</td></tr>
+        <tr><td>7. We have workers from families with low job intensity like families with few people having formal jobs</td><td colspan="5" class="text-center">{{ social_form.low_job_intensity }}</td></tr>
+    </tbody>
+</table>
+
+<!-- Part 3 – Political -->
+<h4 class="mt-5">Part 3</h4>
+<table class="table table-bordered likert-table">
+    <thead class="table-primary"><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+    <tbody>
+        <tr><td>1. Our decisions are based on rule of Law that is individuals are subjected to the same laws</td><td colspan="5" class="text-center">{{ political_form.rule_of_law }}</td></tr>
+        <tr><td>2. In our country, land is controlled by the state</td><td colspan="5" class="text-center">{{ political_form.state_land_control }}</td></tr>
+        <tr><td>3. We often practise democracy in our organization</td><td colspan="5" class="text-center">{{ political_form.democracy_practice }}</td></tr>
+        <tr><td>4. There is observance of political rights</td><td colspan="5" class="text-center">{{ political_form.political_rights }}</td></tr>
+        <tr><td>5. We have civil liberties that is personal liberties without interference from the state</td><td colspan="5" class="text-center">{{ political_form.civil_liberties }}</td></tr>
+        <tr><td>6. There is freedom to choose leaders via fair elections</td><td colspan="5" class="text-center">{{ political_form.fair_elections }}</td></tr>
+        <tr><td>7. Political stability exists in our organisation</td><td colspan="5" class="text-center">{{ political_form.political_stability }}</td></tr>
+        <tr><td>8. We are guided by policy and institutional framework</td><td colspan="5" class="text-center">{{ political_form.policy_framework }}</td></tr>
+    </tbody>
+</table>
+
+<!-- Part 4 – Digital -->
+<h4 class="mt-5">Part 4</h4>
+<table class="table table-bordered likert-table">
+    <thead class="table-primary"><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+    <tbody>
+        <tr><td>1. There is availability of digital infrastructure</td><td colspan="5" class="text-center">{{ digital_form.digital_infra_avail }}</td></tr>
+        <tr><td>2. We have access to digital infrastructure like computers</td><td colspan="5" class="text-center">{{ digital_form.access_computers }}</td></tr>
+        <tr><td>3. We have access to support infrastructure like internet and electricity</td><td colspan="5" class="text-center">{{ digital_form.support_infra }}</td></tr>
+        <tr><td>4. We have a policy of investing in digital Technology</td><td colspan="5" class="text-center">{{ digital_form.invest_policy }}</td></tr>
+        <tr><td>5. The use of digital technology makes work better</td><td colspan="5" class="text-center">{{ digital_form.improves_work }}</td></tr>
+        <tr><td>6. We frequently use digital technologies for executing activities</td><td colspan="5" class="text-center">{{ digital_form.frequent_use }}</td></tr>
+    </tbody>
+</table>
+
+<!-- Part 5 – Participation -->
+<h4 class="mt-5">Part 5</h4>
+<table class="table table-bordered likert-table">
+    <thead class="table-primary"><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+    <tbody>
+        <tr><td>1. I have attended local council meetings in the past 12 months</td><td colspan="5" class="text-center">{{ participation_form.council_meetings }}</td></tr>
+        <tr><td>2. I take part in discussion of public policies in the country</td><td colspan="5" class="text-center">{{ participation_form.discuss_policies }}</td></tr>
+        <tr><td>3. I contribute and deliberate on services in my country</td><td colspan="5" class="text-center">{{ participation_form.contribute_services }}</td></tr>
+        <tr><td>4. The government provides me with public information as and when demanded</td><td colspan="5" class="text-center">{{ participation_form.public_info }}</td></tr>
+        <tr><td>5. I engage in decision making processes of the government</td><td colspan="5" class="text-center">{{ participation_form.decision_making }}</td></tr>
+    </tbody>
+</table>

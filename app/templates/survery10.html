@@ -1,0 +1,392 @@
+{% load static %}
+{% load survey_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <title>Corruption Digital Lens Survey</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 1cm;
+      @top-center { content: "University of Cape Town"; font-size: 10pt; }
+      @bottom-center { content: "Page " counter(page); font-size: 10pt; }
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+      padding: 0 70px;
+      height: 80px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    header h1 { font-size: 24px; font-weight: 700; }
+    header nav ul { display: flex; gap: 15px; list-style: none; margin: 0; padding: 0; }
+    .report-container {
+      background: linear-gradient(to bottom, rgba(111,109,219,0.8), rgba(33,33,92,0.9)),
+                  url('/api/placeholder/1200/400') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+    .form-container {
+      background: white;
+      margin: 40px auto;
+      width: 90%;
+      max-width: 1000px;
+      padding: 3rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .uct-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .uct-header img {
+      max-width: 120px;
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      color: #6f6ddb;
+      border-bottom: 2px solid #6f6ddb;
+      padding-bottom: 8px;
+      margin: 2rem 0 1rem;
+      font-weight: 600;
+    }
+    .likert-table th, .likert-table td {
+      text-align: center;
+      vertical-align: middle;
+      font-size: 0.9rem;
+    }
+    .likert-table th:first-child, .likert-table td:first-child {
+      text-align: left;
+      font-weight: normal;
+    }
+    .form-check-input {
+      margin: 0 auto;
+    }
+    .form-check-label {
+      font-size: 0.85rem;
+      margin-left: 0.5rem;
+    }
+    .other-field {
+      display: none;
+      margin-top: 0.5rem;
+    }
+    .page-break { page-break-before: always; }
+    .complete-box {
+      background: #e9ecef;
+      padding: 2rem;
+      text-align: center;
+      border-radius: 8px;
+      margin-top: 3rem;
+      font-weight: 500;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: white;
+      color: #555;
+      margin-top: 50px;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 1024px) {
+      header { padding: 0 20px; flex-direction: column; height: auto; }
+      .form-container { width: 95%; padding: 2rem; }
+    }
+    @media (max-width: 600px) {
+      header h1 { font-size: 18px; }
+      .form-container { width: 100%; margin: 10px auto; padding: 1.5rem; }
+      .likert-table { font-size: 0.8rem; }
+    }
+    @media print {
+      header, .report-container, footer { display: none; }
+      .form-container { box-shadow: none; margin: 0; width: 100%; }
+      .page-break { page-break-before: always; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Corruption Digital Lens</h1>
+  <nav>
+    <ul>
+      <li><a class="nav-link" href="/">Home</a></li>
+      <li><a class="nav-link" href="/feedback">Feedback</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <div class="report-container">
+    <h1>Survey</h1>
+  </div>
+
+  <div class="form-container">
+    <!-- UCT Header -->
+    <div class="uct-header">
+      <img src="https://www.uct.ac.za/sites/default/files/image_tool/images/328/logo/uct-logo.png" alt="UCT">
+      <h5>University of Cape Town</h5>
+      <p class="small">
+        Department of Information Systems<br>
+        Leslie Commerce Building<br>
+        Upper Campus<br>
+        Private Bag X3, Rondebosch, 7701<br>
+        Tel: +27 (0) 21 650 2261 | Fax: +27 (0) 21 650 2280
+      </p>
+    </div>
+
+    <h3 class="text-center mb-4">A Survey on digital technology framework for mitigating corruption in public organizations of Uganda</h3>
+
+    <p>Digital technology framework is defined as an integrated Information Technology based framework consisting of interacting components that work together to realize a set of functions to create a usable product for solving a problem (Mousa et al., 2024). Mitigated corruption is a reduction in corruption that is achieved when a set of strategies is applied in public organizations. Corruption includes anything that involves abuse of a person’s or organization’s position entrusted to them in the public or private sector for the benefit of a few individuals or organizations to the detriment of the well-being of other people or organizations (Inuwa & Ononiwa, 2020; Damijan, 2023).</p>
+
+    <p>Dear respondent, thank you for participating in this survey. You have been earmarked to possess the required knowledge on corruption and its mitigation. The purpose of the study is to develop a digital technology framework for mitigating corruption. The survey will take approximately 10 minutes. The participation in the survey is voluntary and you can choose to exit at any time. You are therefore requested to respond to the questions detailed in this survey and the information provided will be handled with utmost privacy and will solely be used for academic purposes.</p>
+
+    {% if is_post %}
+      <div class="alert alert-info">
+        <strong>Please note:</strong> This section enables the researcher to obtain information related to how the designed digital tool (<em>The corruption digital lens</em>) mitigates corruption in public organizations.
+      </div>
+    {% else %}
+      <div class="alert alert-info">
+        <strong>Please note:</strong> This section enables the researcher to get information related to the level of corruption in public organizations.
+      </div>
+    {% endif %}
+
+    {% if success %}
+      <div class="complete-box">
+        <h4>COMPLETE</h4>
+        <p>Thank you for completing the questionnaire. If you have any queries please contact Ayebare Joanina on:<br>
+        Tel: <a href="tel:+256779608374">+256 779 608 374</a> or Email: <a href="mailto:aybjoa001@myuct.ac.za">aybjoa001@myuct.ac.za</a>, <a href="mailto:joana2500@gmail.com">joana2500@gmail.com</a></p>
+      </div>
+    {% else %}
+
+    <form method="post" novalidate>
+      {% csrf_token %}
+
+      <!-- A. Demographics -->
+      <h4 class="section-title">A. General Information – Demographics (Respondent demographics)</h4>
+      <p class="text-muted">B. Please tick appropriately</p>
+
+      <table class="table table-bordered bg-light mb-4">
+        <tr>
+          <th>1. Gender</th>
+          <td>
+            {{ respondent_form.gender }}
+          </td>
+        </tr>
+        <tr><th>2. Age</th><td>{{ respondent_form.age }}</td></tr>
+        <tr><th>3. Highest level of Formal education</th><td>{{ respondent_form.education }}</td></tr>
+        <tr>
+          <th>5. Religious Affiliation</th>
+          <td>
+            {{ respondent_form.religion }}
+            <div id="religion_other_field" class="other-field">
+              {{ respondent_form.religion_other }}
+            </div>
+          </td>
+        </tr>
+        <tr><th>6. Experience with work in the organization</th><td>{{ respondent_form.experience }}</td></tr>
+        <tr><th>7. Family Size (Number of family members)</th><td>{{ respondent_form.family_size }}</td></tr>
+        <tr><th>8. Marital status</th><td>{{ respondent_form.marital_status }}</td></tr>
+        <tr><th>9. Income category (monthly gross salary in Millions of UGX)</th><td>{{ respondent_form.income }}</td></tr>
+      </table>
+
+      <h5>Demographics about your organization</h5>
+      <table class="table table-bordered bg-light mb-4">
+        <tr><th>10. Organization Category (eg Education, security, Judiciary etc)</th><td>{{ respondent_form.org_category }}</td></tr>
+        <tr><th>11. Organization age (in years)</th><td>{{ respondent_form.org_age }}</td></tr>
+        <tr><th>12. Organization size (No of employees)</th><td>{{ respondent_form.org_size }}</td></tr>
+        <tr><th>13. Organization Location</th><td>{{ respondent_form.org_location }}</td></tr>
+      </table>
+
+      <!-- SECTION B – Only Initial -->
+      {% if not is_post %}
+        <div class="page-break"></div>
+        <h4 class="section-title">SECTION B</h4>
+
+        <!-- Part 1 – Economic -->
+        <h5>Part 1</h5>
+        <p>Please indicate your agreement/disagreement with the statement below (1=Strongly Disagree → 5=Strongly Agree) in the context of this organization</p>
+        <table class="table table-bordered likert-table mb-4">
+          <thead class="table-light"><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+          <tbody>
+            {% likert_row economic_form.adequate_income %}
+            {% likert_row economic_form.economic_freedom %}
+            {% likert_row economic_form.inflation_affect %}
+            {% likert_row economic_form.international_trade %}
+            {% likert_row economic_form.national_trade %}
+          </tbody>
+        </table>
+
+        <!-- Part 2 – Social -->
+        <h5>Part 2</h5>
+        <table class="table table-bordered likert-table mb-4">
+          <thead class="table-light"><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+          <tbody>
+            {% likert_row social_form.social_distress %}
+            {% likert_row social_form.social_exclusion %}
+            {% likert_row social_form.religious_beliefs %}
+            {% likert_row social_form.male_dominance %}
+            {% likert_row social_form.middle_class_life %}
+            {% likert_row social_form.value_education %}
+            {% likert_row social_form.low_job_intensity %}
+          </tbody>
+        </table>
+
+        <!-- Part 3 – Political -->
+        <h5>Part 3</h5>
+        <table class="table table-bordered likert-table mb-4">
+          <thead class="table-light"><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+          <tbody>
+            {% likert_row political_form.rule_of_law %}
+            {% likert_row political_form.state_land_control %}
+            {% likert_row political_form.democracy_practice %}
+            {% likert_row political_form.political_rights %}
+            {% likert_row political_form.civil_liberties %}
+            {% likert_row political_form.fair_elections %}
+            {% likert_row political_form.political_stability %}
+            {% likert_row political_form.policy_framework %}
+          </tbody>
+        </table>
+
+        <!-- Part 4 – Digital -->
+        <h5>Part 4</h5>
+        <table class="table table-bordered likert-table mb-4">
+          <thead class="table-light"><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+          <tbody>
+            {% likert_row digital_form.digital_infra_avail %}
+            {% likert_row digital_form.access_computers %}
+            {% likert_row digital_form.support_infra %}
+            {% likert_row digital_form.invest_policy %}
+            {% likert_row digital_form.improves_work %}
+            {% likert_row digital_form.frequent_use %}
+          </tbody>
+        </table>
+
+        <!-- Part 5 – Participation -->
+        <h5>Part 5</h5>
+        <table class="table table-bordered likert-table mb-4">
+          <thead class="table-light"><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+          <tbody>
+            {% likert_row participation_form.council_meetings %}
+            {% likert_row participation_form.discuss_policies %}
+            {% likert_row participation_form.contribute_services %}
+            {% likert_row participation_form.public_info %}
+            {% likert_row participation_form.decision_making %}
+          </tbody>
+        </table>
+      {% endif %}
+
+      <!-- Part 6 / Corruption -->
+      <div class="page-break"></div>
+      <h4 class="section-title">
+        {% if is_post %}Corruption Mitigation with Digital Lens{% else %}Part 6{% endif %}
+      </h4>
+      <p>Please indicate your agreement/disagreement with the statement below (1=Strongly Disagree → 5=Strongly Agree)</p>
+
+      <!-- Bribery -->
+      <h5>Bribery</h5>
+      <table class="table table-bordered likert-table mb-4">
+        <thead class="table-light"><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+        <tbody>
+          {% likert_row corruption_form.public_bribes %}
+          {% likert_row corruption_form.request_gifts %}
+          {% likert_row corruption_form.convenience_bribes %}
+          {% likert_row corruption_form.faster_services %}
+          {% likert_row corruption_form.concealment_bribes %}
+        </tbody>
+      </table>
+
+      <!-- Nepotism -->
+      <h5>Nepotism</h5>
+      <table class="table table-bordered likert-table mb-4">
+        <thead class="table-light"><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+        <tbody>
+          {% likert_row corruption_form.use_facilities_family %}
+          {% likert_row corruption_form.no_public_ads %}
+          {% likert_row corruption_form.same_tribe %}
+          {% likert_row corruption_form.tribe_promotions %}
+          {% likert_row corruption_form.unequal_pay %}
+          {% likert_row corruption_form.unqualified_employ %}
+        </tbody>
+      </table>
+
+      <!-- Favoritism -->
+      <h5>Favoritism</h5>
+      <table class="table table-bordered likert-table mb-4">
+        <thead class="table-light"><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+        <tbody>
+          {% likert_row corruption_form.low_price_assets %}
+          {% likert_row corruption_form.favor_friends %}
+          {% likert_row corruption_form.no_demote_friends %}
+          {% likert_row corruption_form.political_appoint %}
+          {% likert_row corruption_form.sex_discrimination %}
+          {% likert_row corruption_form.same_religion %}
+        </tbody>
+      </table>
+
+      <!-- Embezzlement -->
+      <h5>Embezzlement</h5>
+      <table class="table table-bordered likert-table mb-4">
+        <thead class="table-light"><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+        <tbody>
+          {% likert_row corruption_form.private_work_hours %}
+          {% likert_row corruption_form.theft_properties %}
+          {% likert_row corruption_form.theft_funds %}
+          {% likert_row corruption_form.alter_reports %}
+          {% likert_row corruption_form.evade_taxes %}
+          {% likert_row corruption_form.private_use_resources %}
+        </tbody>
+      </table>
+
+      <!-- Other Comments -->
+      <div class="mb-4">
+        <label class="form-label"><strong>Other Comments</strong></label>
+        <p class="text-muted small">If there are any comments, please provide them in this section.</p>
+        {{ corruption_form.comments }}
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary btn-lg px-5">Submit Survey</button>
+      </div>
+    </form>
+    {% endif %}
+  </div>
+
+  <footer>
+    <p>© 2025 Ayebare Joanina. All rights reserved.</p>
+    <p>This platform aims to educate the public about corruption laws in Uganda.</p>
+  </footer>
+</main>
+
+<script>
+  // Show/hide "Other" fields
+  document.addEventListener('DOMContentLoaded', function () {
+    function toggleOther(selectId, fieldId) {
+      const select = document.getElementById(selectId);
+      const field = document.getElementById(fieldId);
+      if (!select || !field) return;
+      function update() {
+        field.style.display = select.value === 'other' ? 'block' : 'none';
+        field.querySelector('input').required = select.value === 'other';
+      }
+      select.addEventListener('change', update);
+      update();
+    }
+    toggleOther('id_religion', 'religion_other_field');
+  });
+</script>
+</body>
+</html>

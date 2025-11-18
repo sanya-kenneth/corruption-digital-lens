@@ -1,0 +1,629 @@
+<!-- survey.html -->
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet" />
+      <!-- Bootstrap CSS -->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Font Awesome -->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    {% comment %} <link rel="stylesheet" href="./styles.css" /> {% endcomment %}
+    <title>Corruption Report Form</title>
+    <style>
+        html {
+            overflow-x: hidden;
+          }
+          body {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+            background:rgb(234, 233, 233);
+            overflow: scroll;
+          }
+          
+          header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 0 70px;
+            height: 80px;
+            flex-wrap: wrap;
+          }
+          header nav ul {
+            display: flex;
+            gap: 10px;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+          }
+          header h1 {
+            white-space: nowrap;
+            font-size: 24px;
+            font-weight: 700;
+          }
+          
+          .report-container {
+            background: linear-gradient(to bottom, rgba(111, 109, 219, 0.8), rgba(33, 33, 92, 0.9)), url('/api/placeholder/1200/400') center/cover no-repeat;
+            color: white;
+            padding: 2rem 1rem;
+          } 
+          
+          .form-container {
+            display: flex;
+            flex-direction: row;
+            background-color: #fff;
+            margin: 50px auto;
+            margin-bottom: 300px;
+            width: 85%;
+            padding: 5%;
+            border-radius: 12px;
+            overflow: scroll;
+            {% comment %} padding: 10%; {% endcomment %}
+            {% comment %} border: 1px solid red; {% endcomment %}
+          }
+          
+          {% comment %} .image-container {
+            width: 50%;
+            overflow: hidden;
+            height: 680px;
+          } {% endcomment %}
+          {% comment %} .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+          } {% endcomment %}
+          
+          .form-container form {
+            width: 100%;
+            {% comment %} padding: 30px 20px; {% endcomment %}
+          }
+          {% comment %} .form-container form div {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+          } {% endcomment %}
+         .form-container input,
+          textarea {
+            width: auto;
+            {% comment %} padding: 12px; {% endcomment %}
+            {% comment %} margin-bottom: 10px; {% endcomment %}
+            border-radius: 6px;
+            {% comment %} background-color:rgb(245, 242, 242); {% endcomment %}
+            border: 2px solid rgba(103, 14, 157, 0.75);
+            {% comment %} border: none;s {% endcomment %}
+            {% comment %} outline: none; {% endcomment %}
+            {% comment %} margin-top: 8px; {% endcomment %}
+            font-size: 16px;
+            {% comment %} display: block; {% endcomment %}
+          }
+         .form-container textarea {
+            width: 100%;
+          }
+          {% comment %} .form-container button {
+            padding: 12px;
+            width: 100%;
+            color: #fff;
+            background-color: #0000ff;
+            border: none;
+            font-weight: 700;
+            border-radius: 8px;
+          } {% endcomment %}
+          
+          @media (max-width: 1024px) {
+            header {
+              padding: 0 20px;
+              flex-direction: column;
+              align-items: flex-start;
+              height: auto;
+            }
+          
+            .form-container {
+              flex-direction: column;
+              width: 95%;
+            }
+          
+            {% comment %} .image-container,
+            .form-container form {
+              width: 100%;
+            }
+          
+            .image-container {
+              height: 250px;
+            } {% endcomment %}
+          
+            .report-container {
+              padding: 20px;
+            }
+          }
+          
+          @media (max-width: 600px) {
+            header h1 {
+              font-size: 18px;
+            }
+          
+            .report-container {
+              padding: 10px 15px;
+            }
+          
+            .form-container {
+              width: 100%;
+              margin: 10px auto;
+            }
+          
+            .form-container form {
+              padding: 20px 15px;
+            }
+          
+            .image-container {
+              height: 200px;
+            }
+          
+            textarea {
+              font-size: 14px;
+            }
+          
+            .form-container input,
+            .form-container select {
+              font-size: 14px;
+            }
+          }
+          footer {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            color: #555;
+        }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1 class="">Corruption Digital Lens</h1>
+      <nav>
+        <ul>
+          <li><a class="nav-link" href="/">Home</a></li>
+          <li><a class="nav-link" href="/feedback">Feedback</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="report-container">
+        <div>
+          <i></i>
+          <img src="" alt="">
+          
+        </div>
+
+        <h1>Survey</h1>
+      </div>
+      <div class="d-flex flex-row justify-content-center align-items-center form-container">
+    <div class="container">
+    <!-- Header with Logo and University Details -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-8 text-center">
+            <img src="https://veldfiremedia.com/wp-content/uploads/2022/12/UCT-logo-1200x620-1.png" alt="University of Cape Town Logo" style="max-width: 200px;">
+            <h5>University of Cape Town</h5>
+            <p>Department of Information Systems<br>
+            Leslie Commerce Building<br>
+            Upper Campus<br>
+            Private Bag X3 - Rondebosch - 7701<br>
+            Tel: +27 (0) 21 650 2261 Fax: +27 (0) 21 650 2280</p>
+        </div>
+    </div>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">{{ title }}</h1>
+        <div class="alert alert-info">{{ intro | safe }}</div>
+        
+        <form method="post" class="form">
+            {% csrf_token %}
+            
+            <fieldset>
+                <legend>A. General Information – Demographics (Respondent demographics)</legend>
+                {% for field in demographic_fields %}
+                    <div class="form-group" {% if field.name|slice:":-6" == '_other' %} id="{{ field.name }}_group" class="d-none" {% endif %}>
+                        {% if field.field.choices %}
+                            <label class="form-label">{{ field.label }}</label>
+                            <div class="d-flex flex-wrap">
+                                {% for choice in field %}
+                                    <div class="form-check me-4">
+                                        {{ choice.tag }}
+                                        <label class="form-check-label" for="{{ choice.id_for_label }}">{{ choice.choice_value }} {{ choice.choice_label }}</label>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ field.label_tag }}
+                            {{ field }}
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </fieldset>
+            
+            {% if economic_fields %}
+                <fieldset>
+                    <legend>Section B</legend>
+                    <p class="lead alert alert-info">Please indicate your agreement/disagreement with the statement below (1=Strongly Disagree; 2=Disagree; 3=Somewhat Agree; 4= Agree, 5= Strongly Agree)</p>
+                    
+                    <h5>Part 1</h5>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Statement</th>
+                                <th>...</th>
+                                <th>1</th>
+                                <th>2</th>
+                                <th>3</th>
+                                <th>4</th>
+                                <th>5</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for field in economic_fields %}
+                                <tr>
+                                    <td>{{ field.label }}</td>
+                                    {% for choice in field %}
+                                        <td class="text-center">{{ choice.tag }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    
+                    <p class="lead alert alert-info">Please indicate your agreement/disagreement with the statement below (1=Strongly Disagree; 2=Disagree; 3=Somewhat Agree; 4= Agree, 5= Strongly Agree)</p>
+                    <h5>Part 2</h5>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Statement</th>
+                                <th>...</th>
+                                <th>1</th>
+                                <th>2</th>
+                                <th>3</th>
+                                <th>4</th>
+                                <th>5</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for field in social_fields %}
+                                <tr>
+                                    <td>{{ field.label }}</td>
+                                    {% for choice in field %}
+                                        <td class="text-center">{{ choice.tag }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    
+                    <p class="lead alert alert-info">Please indicate your agreement/disagreement with the statement below (1=Strongly Disagree; 2=Disagree; 3=Somewhat Agree; 4= Agree, 5= Strongly Agree)</p>
+                    <h5>Part 3</h5>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Statement</th>
+                                <th>...</th>
+                                <th>1</th>
+                                <th>2</th>
+                                <th>3</th>
+                                <th>4</th>
+                                <th>5</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for field in political_fields %}
+                                <tr>
+                                    <td>{{ field.label }}</td>
+                                    {% for choice in field %}
+                                        <td class="text-center">{{ choice.tag }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    
+                    <p class="lead alert alert-info">Please indicate your agreement/disagreement with the statement below (1=Strongly Disagree; 2=Disagree; 3=Somewhat Agree; 4= Agree, 5= Strongly Agree)</p>
+                    <h5>Part 4</h5>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Statement</th>
+                                <th>...</th>
+                                <th>1</th>
+                                <th>2</th>
+                                <th>3</th>
+                                <th>4</th>
+                                <th>5</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for field in digital_fields %}
+                                <tr>
+                                    <td>{{ field.label }}</td>
+                                    {% for choice in field %}
+                                        <td class="text-center">{{ choice.tag }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    
+                    <p class="lead alert alert-info">Please indicate your agreement/disagreement with the statement below (1=Strongly Disagree; 2=Disagree; 3=Somewhat Agree; 4= Agree, 5= Strongly Agree)</p>
+                    <h5>Part 5</h5>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Statement</th>
+                                <th>...</th>
+                                <th>1</th>
+                                <th>2</th>
+                                <th>3</th>
+                                <th>4</th>
+                                <th>5</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for field in civic_fields %}
+                                <tr>
+                                    <td>{{ field.label }}</td>
+                                    {% for choice in field %}
+                                        <td class="text-center">{{ choice.tag }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    
+                    <p class="lead alert alert-info">Please indicate your agreement/disagreement with the statement below (1=Strongly Disagree; 2=Disagree; 3=Somewhat Agree; 4= Agree, 5= Strongly Agree)</p>
+                    <h5>Part 6</h5>
+                    {% comment %} <p>Please note that this section enables the researcher to get information related to the level of corruption in public organizations</p> {% endcomment %}
+                    {% comment %} <h6>Bribery</h6> {% endcomment %}
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Statement</th>
+                                <th>...</th>
+                                <th>1</th>
+                                <th>2</th>
+                                <th>3</th>
+                                <th>4</th>
+                                <th>5</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for field in bribery_fields %}
+                                <tr>
+                                    <td>{{ field.label }}</td>
+                                    {% for choice in field %}
+                                        <td class="text-center">{{ choice.tag }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    
+                    {% comment %} <h6>Nepotism</h6> {% endcomment %}
+                    <p class="lead alert alert-info">Please indicate your agreement/disagreement with the statement below (1=Strongly Disagree; 2=Disagree; 3=Somewhat Agree; 4= Agree, 5= Strongly Agree)</p>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Statement</th>
+                                <th>...</th>
+                                <th>1</th>
+                                <th>2</th>
+                                <th>3</th>
+                                <th>4</th>
+                                <th>5</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for field in nepotism_fields %}
+                                <tr>
+                                    <td>{{ field.label }}</td>
+                                    {% for choice in field %}
+                                        <td class="text-center">{{ choice.tag }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    
+                    {% comment %} <h6>Favoritism</h6> {% endcomment %}
+                    <p class="lead alert alert-info">Please indicate your agreement/disagreement with the statement below (1=Strongly Disagree; 2=Disagree; 3=Somewhat Agree; 4= Agree, 5= Strongly Agree)</p>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Statement</th>
+                                <th>...</th>
+                                <th>1</th>
+                                <th>2</th>
+                                <th>3</th>
+                                <th>4</th>
+                                <th>5</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for field in favoritism_fields %}
+                                <tr>
+                                    <td>{{ field.label }}</td>
+                                    {% for choice in field %}
+                                        <td class="text-center">{{ choice.tag }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    
+                    {% comment %} <h6>Embezzlement</h6> {% endcomment %}
+                    <p class="lead alert alert-info">Please indicate your agreement/disagreement with the statement below (1=Strongly Disagree; 2=Disagree; 3=Somewhat Agree; 4= Agree, 5= Strongly Agree)</p>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Statement</th>
+                                <th>...</th>
+                                <th>1</th>
+                                <th>2</th>
+                                <th>3</th>
+                                <th>4</th>
+                                <th>5</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for field in embezzlement_fields %}
+                                <tr>
+                                    <td>{{ field.label }}</td>
+                                    {% for choice in field %}
+                                        <td class="text-center">{{ choice.tag }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </fieldset>
+            {% else %}
+                <fieldset>
+                    <legend>Mitigation Questions</legend>
+                    <p class="lead alert alert-info">Please indicate your agreement/disagreement with the statement below (1=Strongly Disagree; 2=Disagree; 3=Somewhat Agree; 4= Agree, 5= Strongly Agree)</p>
+                    
+                    {% comment %} <h5>Bribery Mitigation</h5> {% endcomment %}
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Statement</th>
+                                <th>...</th>
+                                <th>1</th>
+                                <th>2</th>
+                                <th>3</th>
+                                <th>4</th>
+                                <th>5</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for field in bribery_fields %}
+                                <tr>
+                                    <td>{{ field.label }}</td>
+                                    {% for choice in field %}
+                                        <td class="text-center">{{ choice.tag }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    
+                    {% comment %} <h5>Nepotism Mitigation</h5> {% endcomment %}
+                    <p class="lead alert alert-info">Please indicate your agreement/disagreement with the statement below (1=Strongly Disagree; 2=Disagree; 3=Somewhat Agree; 4= Agree, 5= Strongly Agree)</p>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Statement</th>
+                                <th>...</th>
+                                <th>1</th>
+                                <th>2</th>
+                                <th>3</th>
+                                <th>4</th>
+                                <th>5</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for field in nepotism_fields %}
+                                <tr>
+                                    <td>{{ field.label }}</td>
+                                    {% for choice in field %}
+                                        <td class="text-center">{{ choice.tag }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    
+                    {% comment %} <h5>Favoritism Mitigation</h5> {% endcomment %}
+                    <p class="lead alert alert-info">Please indicate your agreement/disagreement with the statement below (1=Strongly Disagree; 2=Disagree; 3=Somewhat Agree; 4= Agree, 5= Strongly Agree)</p>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Statement</th>
+                                <th>...</th>
+                                <th>1</th>
+                                <th>2</th>
+                                <th>3</th>
+                                <th>4</th>
+                                <th>5</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for field in favoritism_fields %}
+                                <tr>
+                                    <td>{{ field.label }}</td>
+                                    {% for choice in field %}
+                                        <td class="text-center">{{ choice.tag }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    
+                    {% comment %} <h5>Embezzlement Mitigation</h5> {% endcomment %}
+                    <p class="lead alert alert-info">Please indicate your agreement/disagreement with the statement below (1=Strongly Disagree; 2=Disagree; 3=Somewhat Agree; 4= Agree, 5= Strongly Agree)</p>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Statement</th>
+                                <th>...</th>
+                                <th>1</th>
+                                <th>2</th>
+                                <th>3</th>
+                                <th>4</th>
+                                <th>5</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for field in embezzlement_fields %}
+                                <tr>
+                                    <td>{{ field.label }}</td>
+                                    {% for choice in field %}
+                                        <td class="text-center">{{ choice.tag }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </fieldset>
+            {% endif %}
+            
+            <fieldset>
+                <legend>Other Comments</legend>
+                {{ comment_field.label_tag }}
+                {{ comment_field }}
+            </fieldset>
+            
+            <button type="submit" class="btn btn-primary btn-lg w-100">Submit</button>
+        </form>
+    </div>
+    
+    <script>
+        $(document).ready(function() {
+            $('input[name="gender"]').on('change', function() {
+                if ($(this).val() == '3') {
+                    $('#gender_other_group').removeClass('d-none');
+                } else {
+                    $('#gender_other_group').addClass('d-none');
+                }
+            });
+            $('input[name="religion"]').on('change', function() {
+                if ($(this).val() == '5') {
+                    $('#religion_other_group').removeClass('d-none');
+                } else {
+                    $('#religion_other_group').addClass('d-none');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
