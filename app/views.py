@@ -489,7 +489,7 @@ def public_survey(request):
             return redirect('thanks')
     else:
         form = PublicForm()
-    demographic_fields = [form['gender'], form['gender_other'], form['age'], form['education'], form['religion'], form['religion_other'], form['experience'], form['family_size'], form['marital'], form['income'], form['org_category'], form['org_age'], form['org_size'], form['org_location']]
+    demographic_fields = [form['gender'], form['gender_other'], form['age'], form['education'], form['religion'], form['religion_other'], form['experience'], form['family_size'], form['marital'], form['income'], form['org_name'], form['org_category'], form['org_age'], form['org_size'], form['org_location']]
     economic_fields = [form['economic_1'], form['economic_2'], form['economic_3'], form['economic_4'], form['economic_5']]
     social_fields = [form['social_1'], form['social_2'], form['social_3'], form['social_4'], form['social_5'], form['social_6'], form['social_7']]
     political_fields = [form['political_1'], form['political_2'], form['political_3'], form['political_4'], form['political_5'], form['political_6'], form['political_7'], form['political_8']]
@@ -520,7 +520,7 @@ def employee_survey(request):
             return redirect('thanks')
     else:
         form = EmployeeForm()
-    demographic_fields = [form['gender'], form['gender_other'], form['age'], form['education'], form['religion'], form['religion_other'], form['experience'], form['family_size'], form['marital'], form['income'], form['org_category'], form['org_age'], form['org_size'], form['org_location']]
+    demographic_fields = [form['gender'], form['gender_other'], form['age'], form['education'], form['religion'], form['religion_other'], form['experience'], form['family_size'], form['marital'], form['income'], form['org_name'], form['org_category'], form['org_age'], form['org_size'], form['org_location']]
     economic_fields = [form['economic_1'], form['economic_2'], form['economic_3'], form['economic_4'], form['economic_5']]
     social_fields = [form['social_1'], form['social_2'], form['social_3'], form['social_4'], form['social_5'], form['social_6'], form['social_7']]
     political_fields = [form['political_1'], form['political_2'], form['political_3'], form['political_4'], form['political_5'], form['political_6'], form['political_7'], form['political_8']]

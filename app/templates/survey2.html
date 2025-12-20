@@ -259,10 +259,11 @@
         
         <h3>Demographics about your organization</h3>
         <table class="table table-bordered bg-light">
-            <tr><th>10. Organization Category (eg Education, security, Judiciary etc)</th><td>{{ respondent_form.org_category }}</td></tr>
-            <tr><th>11. Organization age (in years)</th><td>{{ respondent_form.org_age }}</td></tr>
-            <tr><th>12. Organization size (No of employees)</th><td>{{ respondent_form.org_size }}</td></tr>
-            <tr><th>13. Organization Location</th><td>{{ respondent_form.org_location }}</td></tr>
+            <tr><th>10. Organization Name</th><td>{{ respondent_form.org_name }}</td></tr>
+            <tr><th>11. Organization Category (eg Education, security, Judiciary etc)</th><td>{{ respondent_form.org_category }}</td></tr>
+            <tr><th>12. Organization age (in years)</th><td>{{ respondent_form.org_age }}</td></tr>
+            <tr><th>13. Organization size (No of employees)</th><td>{{ respondent_form.org_size }}</td></tr>
+            <tr><th>14. Organization Location</th><td>{{ respondent_form.org_location }}</td></tr>
         </table>
         
         {% if not is_post %}

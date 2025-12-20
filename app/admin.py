@@ -114,7 +114,7 @@ class PublicResponseAdmin(admin.ModelAdmin):
     list_display = ('id', 'created_at')
     fieldsets = [
         ('Demographics', {'fields': ['gender', 'gender_other', 'age', 'education', 'religion', 'religion_other',
-         'experience', 'family_size', 'marital', 'income', 'org_category', 'org_age', 'org_size', 'org_location']}),
+         'experience', 'family_size', 'marital', 'income', 'org_name', 'org_category', 'org_age', 'org_size', 'org_location']}),
         ('Part 1: Economic Factors', {'fields': [
          'economic_1', 'economic_2', 'economic_3', 'economic_4', 'economic_5']}),
         ('Part 2: Social Factors', {'fields': [
@@ -145,7 +145,7 @@ class EmployeeResponseAdmin(admin.ModelAdmin):
     list_display = ('id', 'created_at')
     fieldsets = [
         ('Demographics', {'fields': ['gender', 'gender_other', 'age', 'education', 'religion', 'religion_other',
-         'experience', 'family_size', 'marital', 'income', 'org_category', 'org_age', 'org_size', 'org_location']}),
+         'experience', 'family_size', 'marital', 'income', 'org_name', 'org_category', 'org_age', 'org_size', 'org_location']}),
         ('Part 1: Economic Factors', {'fields': [
          'economic_1', 'economic_2', 'economic_3', 'economic_4', 'economic_5']}),
         ('Part 2: Social Factors', {'fields': [
@@ -169,36 +169,6 @@ class EmployeeResponseAdmin(admin.ModelAdmin):
 
     class AdminConfig:
         ordering = "Questionnaires"
-
-
-# class ExportAllAdmin(BaseResponseAdmin):
-#     def get_urls(self):
-#         urls = super().get_urls()
-#         custom_urls = [
-#             path('export-all/', self.admin_site.admin_view(self.export_all_view), name='export-all'),
-#         ]
-#         return custom_urls + urls
-
-#     def export_all_view(self, request):
-#         queryset = self.model.objects.all()
-#         return export_to_excel(self, request, queryset)
-
-# # Then replace the admin registration:
-# admin.site.unregister(SystemResponse)
-# admin.site.unregister(PublicResponse)
-# admin.site.unregister(EmployeeResponse)
-
-# @admin.register(SystemResponse)
-# class SystemResponseAdmin(ExportAllAdmin):
-#     pass
-
-# @admin.register(PublicResponse)
-# class PublicResponseAdmin(ExportAllAdmin):
-#     pass
-
-# @admin.register(EmployeeResponse)
-# class EmployeeResponseAdmin(ExportAllAdmin):
-#     pass
 
 
 def comments_preview(self, obj):

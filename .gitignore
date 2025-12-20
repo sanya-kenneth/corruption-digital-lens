@@ -4,3 +4,4 @@ app/__pycache__
 app/migrations/__pycache__
 db.sqlite3
 static/*
+*.sqlite3
